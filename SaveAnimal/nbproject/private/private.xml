@@ -3,16 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/RescueAnimalOrganization/RescueAnimalOrganizationDirectory.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Customer/Customer.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Doctor/Doctor.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/RescueWorker/RescueWorkerDirectory.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/RescueAnimalOrganization/RescueAnimalOrganization.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Doctor/DoctorDirectory.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/RescueWorker/RescueWorker.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Employee/EmployeeDirectory.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/hospital/Hospital.java</file>
-            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Employee/Employee.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/WorkerRole.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Enterprise/EnterpriseDirectory.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/DepartmentDirectory.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/Department.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Pet/Pet.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/HospitalAdminOrg.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/DoctorRole.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/SystemAdminRole.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/OrganizationAdminOrg.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Enterprise/hospital/Hospital.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/SystemOrg.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Department/WorkerOrg.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/Role.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/CustomerRole.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/EcoSystem.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Network/NetworkDirectory.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Pet/PetDirectory.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Enterprise/Enterprise.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/HospitalAdminRole.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Network/Network.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Enterprise/RescueAnimalOrganization/RescueAnimalOrganization.java</file>
+            <file>file:/Users/junyaoli/Desktop/SaveAnimal/src/Business/Role/OrganizationAdminRole.java</file>
         </group>
     </open-files>
 </project-private>
