@@ -8,19 +8,20 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.Hospital.HospitalAdminJPanel;
 import userinterface.HospitalRole.DoctorJPanel;
 
 /**
  *
- * @author harold
+ * @author junyaoli
  */
-public class DoctorRole extends Role {
-    public DoctorRole(String roleType,  int enterpriseID) {
+public class HospitalAdminRole extends Role{
+    
+    public HospitalAdminRole(String roleType,  int enterpriseID) {
         super(roleType,  enterpriseID);
     }
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new DoctorJPanel(userProcessContainer,account,business);//To change body of generated methods, choose Tools | Templates.
+        return new HospitalAdminJPanel(userProcessContainer,account,business);//To change body of generated methods, choose Tools | Templates.
     }
-    
 }

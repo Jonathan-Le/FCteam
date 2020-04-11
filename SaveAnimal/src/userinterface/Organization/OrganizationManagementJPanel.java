@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.RescueOrganizationAdmin;
+package userinterface.Organization;
+
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,8 +18,14 @@ public class OrganizationManagementJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagementJPanel
      */
-    public OrganizationManagementJPanel() {
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private EcoSystem business;
+    public OrganizationManagementJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.business=business;
     }
 
     /**

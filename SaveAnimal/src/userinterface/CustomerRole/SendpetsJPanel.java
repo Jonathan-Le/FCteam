@@ -5,6 +5,10 @@
  */
 package userinterface.CustomerRole;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author junyaoli
@@ -14,8 +18,14 @@ public class SendpetsJPanel extends javax.swing.JFrame {
     /**
      * Creates new form SendpetsJPanel
      */
-    public SendpetsJPanel() {
+        private JPanel userProcessContainer;
+    private UserAccount account;
+    private EcoSystem business;
+    public SendpetsJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
+                this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.business=business;
     }
 
     /**
@@ -45,7 +55,7 @@ public class SendpetsJPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
-        jLabel1.setText("Upload Your Pet Information");
+        jLabel1.setText("Upload Animal Information");
 
         jLabel2.setText("Pet Bredd:");
 
@@ -79,7 +89,7 @@ public class SendpetsJPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,9 +109,9 @@ public class SendpetsJPanel extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel1)
-                .addGap(158, 158, 158))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

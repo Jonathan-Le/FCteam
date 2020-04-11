@@ -1,8 +1,10 @@
 
 
-package userinterface.HospitalAdmin;
+package userinterface.Hospital;
 
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -10,15 +12,18 @@ import javax.swing.JPanel;
  *
  * @author  raunak
  */
-public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+public class HospitalAdminJPanel extends javax.swing.JPanel {
     
-    JPanel userProcessContainer;
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private EcoSystem business;
     
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer) {
+    public HospitalAdminJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-      
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.business=business;
         //valueLabel.setText();
     }
     

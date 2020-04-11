@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -8,7 +8,7 @@ import Business.EcoSystem;
 
 import Business.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.CustomerRole.CustomerAreaJPanel;
+import userinterface.CustomerRole.CustomerManageJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -16,10 +16,12 @@ import javax.swing.JPanel;
  * @author raunak
  */
 public class CustomerRole extends Role{
-
+        public CustomerRole(String roleType,  int enterpriseID) {
+        super(roleType,  enterpriseID);
+    }
     
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new CustomerAreaJPanel(userProcessContainer, account);
+        return new CustomerManageJPanel(userProcessContainer, account, business);
     }
     
     
