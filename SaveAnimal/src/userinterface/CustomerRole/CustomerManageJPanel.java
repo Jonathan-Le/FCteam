@@ -40,34 +40,34 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        petadoptionjButton = new javax.swing.JButton();
+        sendpetjButton = new javax.swing.JButton();
+        petinformationjButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Welcome to the Customer Center !");
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton1.setText("Pet adoption");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        petadoptionjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        petadoptionjButton.setText("Pet adoption");
+        petadoptionjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                petadoptionjButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton2.setText("Send pets to rescue organization");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sendpetjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        sendpetjButton.setText("Send pets to rescue organization");
+        sendpetjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sendpetjButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton3.setText("Your Pets");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        petinformationjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        petinformationjButton.setText("Your Pets");
+        petinformationjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                petinformationjButtonActionPerformed(evt);
             }
         });
 
@@ -83,9 +83,9 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
                         .addGap(70, 70, 70))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(petadoptionjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sendpetjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(petinformationjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -94,44 +94,44 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
                 .addGap(55, 55, 55)
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                .addComponent(petadoptionjButton)
                 .addGap(34, 34, 34)
-                .addComponent(jButton2)
+                .addComponent(sendpetjButton)
                 .addGap(34, 34, 34)
-                .addComponent(jButton3)
+                .addComponent(petinformationjButton)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void petadoptionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petadoptionjButtonActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new PetadoptionJPanel(userProcessContainer, account, business));
         layout.next(userProcessContainer);    
                 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_petadoptionjButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void sendpetjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendpetjButtonActionPerformed
         // TODO add your handling code here:
          CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new SendpetsJPanel(userProcessContainer, account, business));
         layout.next(userProcessContainer);    
                 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_sendpetjButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void petinformationjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petinformationjButtonActionPerformed
         // TODO add your handling code here:
          CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new YourPetsJPanel(userProcessContainer, account, business));
         layout.next(userProcessContainer);    
                 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_petinformationjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton petadoptionjButton;
+    private javax.swing.JButton petinformationjButton;
+    private javax.swing.JButton sendpetjButton;
     // End of variables declaration//GEN-END:variables
 }
