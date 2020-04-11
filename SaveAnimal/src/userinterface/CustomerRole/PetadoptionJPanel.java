@@ -6,6 +6,11 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
+import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
+import Business.Organization;
+import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkQueue;
 import java.awt.CardLayout;
@@ -23,34 +28,47 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PetadoptionJPanel
      */
-        private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;
+    RescueAnimalOrganization org;
     public PetadoptionJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.business=business;
-        populateRequestTable();
+        populateOrgTable();
+        
+       
     }
-    
-    public void populateRequestTable(){
+    public void populateOrgTable(){
 
-            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-            dtm.setRowCount(0);
-            
-            ArrayList<Pet> petlist = business.getRescueAnimalOrganizationDirectory.getPetList;
-            
-            if (petlist != null){
-                 
-                for(Pet pet : petlist){
-                    Object[] row = new Object[5];
-                    row[0]=pet;
-     
+            DefaultTableModel dtm = (DefaultTableModel) orgjTable.getModel();
+            dtm.setRowCount(0);          
+            ArrayList<Enterprise> entlist = business.getEnterpriseDirectory().getEnterpriseList();          
+            if (entlist != null){               
+                for(Enterprise ent : entlist){
+                    Object[] row = new Object[2];
+                    row[0]=ent.getEnterpriseID();
+                    row[1]=ent.getEnterpriseName();
                     dtm.addRow(row);
                 }
-            }
-          
+            }    
+    } 
+    public void populatePetTable(RescueAnimalOrganization org){
+
+            DefaultTableModel dtm = (DefaultTableModel) orgjTable.getModel();
+            dtm.setRowCount(0);           
+            ArrayList<Pet> petlist = org.getPetDirectory().getPetlist();           
+            if (petlist != null){                 
+                for(Pet pet : petlist){
+                    Object[] row = new Object[3];
+                    row[0] = pet.getID();
+                    row[1]=pet.getSpecies();
+                    row[2]= pet.getAge();
+                    dtm.addRow(row);
+                }
+            }     
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,31 +80,37 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        orgjTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        sendjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        petjTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        choosejButton = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        orgjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(orgjTable);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
-        jLabel1.setText("These Pets Need Your Helps ! ");
+        jLabel1.setText("Rescue Organiztion List");
 
-        jButton1.setText("Submit Application");
-
-        jButton2.setText("More Information");
+        sendjButton.setText("Send Application");
+        sendjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendjButtonActionPerformed(evt);
+            }
+        });
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,41 +119,76 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             }
         });
 
+        petjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Species", "Age"
+            }
+        ));
+        jScrollPane2.setViewportView(petjTable);
+        if (petjTable.getColumnModel().getColumnCount() > 0) {
+            petjTable.getColumnModel().getColumn(2).setHeaderValue("Age");
+        }
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel2.setText("Pet List");
+
+        choosejButton.setText("Choose");
+        choosejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choosejButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(backJButton)
-                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addContainerGap()
+                        .addComponent(backJButton)
+                        .addGap(65, 65, 65)
                         .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(choosejButton)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(169, 169, 169))
+                            .addComponent(sendjButton))))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(backJButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(choosejButton)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sendjButton)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -141,13 +200,36 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void sendjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendjButtonActionPerformed
+        // TODO add your handling code here:
+        int row = petjTable.getSelectedRow();
+        int ID = Integer.valueOf(orgjTable.getValueAt(row, 0).toString());
+        
+        Pet pet =(Pet)org.getPetDirectory().findPet(ID);
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new MyApplicationJPanel(userProcessContainer, account, business,pet));
+        layout.next(userProcessContainer);   
+    }//GEN-LAST:event_sendjButtonActionPerformed
+
+    private void choosejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosejButtonActionPerformed
+        // TODO add your handling code here:
+        int row = orgjTable.getSelectedRow();
+        int ID = Integer.valueOf(orgjTable.getValueAt(row, 0).toString());
+        org =(RescueAnimalOrganization)business.getEnterpriseDirectory().findEnterprise(ID);
+        populatePetTable(org);
+    }//GEN-LAST:event_choosejButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton choosejButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable orgjTable;
+    private javax.swing.JTable petjTable;
+    private javax.swing.JButton sendjButton;
     // End of variables declaration//GEN-END:variables
 }

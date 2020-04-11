@@ -7,6 +7,8 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +25,7 @@ public class SendpetsJPanel extends javax.swing.JFrame {
     private EcoSystem business;
     public SendpetsJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-                this.userProcessContainer=userProcessContainer;
+        this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.business=business;
     }
@@ -153,10 +155,10 @@ public class SendpetsJPanel extends javax.swing.JFrame {
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        CustomerAreaJPanel dwjp = (CustomerAreaJPanel) component;
-        dwjp.populateRequestTable();
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
+//        CustomerAreaJPanel dwjp = (CustomerAreaJPanel) component;
+//        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
@@ -191,7 +193,7 @@ public class SendpetsJPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SendpetsJPanel().setVisible(true);
+//                new SendpetsJPanel().setVisible(true);
             }
         });
     }

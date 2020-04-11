@@ -5,7 +5,7 @@
  */
 package userinterface.OrganizationRole;
 
-import userinterface.RecueWorker.*;
+
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;

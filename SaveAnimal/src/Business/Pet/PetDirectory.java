@@ -6,6 +6,7 @@
 package Business.Pet;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,16 @@ public class PetDirectory {
 
     public void setPetlist(ArrayList<Pet> petlist) {
         this.petlist = petlist;
+    }
+    
+    public Pet findPet(int ID) {
+       for (Pet pet : petlist) {
+            if (pet.getID()==ID) {
+                return pet;
+            }
+            JOptionPane.showMessageDialog(null, "No enterprise");
+        }
+        return null;
     }
     
     public Pet AddPet(Pet pet){

@@ -3,7 +3,10 @@ package Business.Enterprise;
 
 import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
 import Business.Enterprise.hospital.Hospital;
+import com.db4o.cs.internal.messages.Message;
+import java.awt.TrayIcon;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +39,16 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         return enterprise;
+    }
+    
+    public Enterprise findEnterprise(int ID){
+        for (Enterprise enterprise : enterpriseList) {
+            if (enterprise.getEnterpriseID()==ID) {
+                return enterprise;
+            }
+            JOptionPane.showMessageDialog(null, "No enterprise");
+        }
+        return null;
     }
     
     public void deleteEnterprise(Enterprise enterprise){

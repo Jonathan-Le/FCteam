@@ -17,10 +17,11 @@ import java.util.ArrayList;
  */
 public class RescueAnimalOrganization extends Enterprise {
    
-    PetDirectory petlist;
+    PetDirectory petDirectory;
+    
     public RescueAnimalOrganization(String name) {
         super(name, EnterpriseType.RescuOrganization);
-        petlist= new PetDirectory();
+        petDirectory= new PetDirectory();
     }
 
     @Override
@@ -31,5 +32,15 @@ public class RescueAnimalOrganization extends Enterprise {
             }
         };
     }
+
+    public PetDirectory getPetDirectory() {
+        return petDirectory;
+    }
+
+    public void setPetDirectory(PetDirectory petDirectory) {
+        this.petDirectory = petDirectory;
+    }
+    
+    
 
 }
