@@ -12,6 +12,7 @@ import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.NetworkDirectory;
 import Business.Pet.PetDirectory;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -26,7 +27,8 @@ public class EcoSystem {
     private EnterpriseDirectory enterpriseDirectory;
     private PetDirectory petDirectory;
     
-
+    private WorkQueue adoptionQueue;
+    
     public EcoSystem() {
 
         this.networkdirectory = new NetworkDirectory();
@@ -34,6 +36,7 @@ public class EcoSystem {
         this.employeeDirectory= new EmployeeDirectory();
         this.enterpriseDirectory= new EnterpriseDirectory();
         this.petDirectory = new PetDirectory();
+        this.adoptionQueue = new WorkQueue();
         
     }
     
@@ -60,6 +63,14 @@ public class EcoSystem {
 //        }
         return true;
       
+    }
+
+    public WorkQueue getAdoptionQueue() {
+        return adoptionQueue;
+    }
+
+    public void setAdoptionQueue(WorkQueue adoptionQueue) {
+        this.adoptionQueue = adoptionQueue;
     }
 
     public PetDirectory getPetDirectory() {

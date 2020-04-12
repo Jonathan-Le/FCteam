@@ -208,7 +208,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         Pet pet =(Pet)org.getPetDirectory().findPet(ID);
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new MyApplicationJPanel(userProcessContainer, account, business,pet));
+        userProcessContainer.add(new MyApplicationJPanel(userProcessContainer, account, business,pet,org));
         layout.next(userProcessContainer);   
     }//GEN-LAST:event_sendjButtonActionPerformed
 

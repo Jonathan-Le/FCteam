@@ -17,11 +17,20 @@ public abstract class WorkRequest {
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
+    private String result;
     private Date requestDate;
     private Date resolveDate;
     
     public WorkRequest(){
         requestDate = new Date();
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public String getMessage() {

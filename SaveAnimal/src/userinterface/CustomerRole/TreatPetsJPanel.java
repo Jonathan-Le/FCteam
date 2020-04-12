@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author junyaoli
  */
-public class YourPetsJPanel extends javax.swing.JPanel {
+public class TreatPetsJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form YourPetsJPanel
@@ -21,7 +21,7 @@ public class YourPetsJPanel extends javax.swing.JPanel {
         private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;
-    public YourPetsJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public TreatPetsJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
                 this.userProcessContainer=userProcessContainer;
         this.account=account;
