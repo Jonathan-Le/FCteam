@@ -43,8 +43,11 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
         petAdoptionjButton = new javax.swing.JButton();
         treatPetsjButton = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Welcome to the Customer Center !");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 57, -1, -1));
 
         petAdoptionjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         petAdoptionjButton.setText("Pet adoption");
@@ -53,6 +56,7 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
                 petAdoptionjButtonActionPerformed(evt);
             }
         });
+        add(petAdoptionjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 278, -1));
 
         treatPetsjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         treatPetsjButton.setText("Treat pets");
@@ -61,35 +65,7 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
                 treatPetsjButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(70, 70, 70))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(petAdoptionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(treatPetsjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addComponent(petAdoptionjButton)
-                .addGap(85, 85, 85)
-                .addComponent(treatPetsjButton)
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
+        add(treatPetsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 244, 278, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void petAdoptionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petAdoptionjButtonActionPerformed

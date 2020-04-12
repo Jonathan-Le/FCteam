@@ -14,16 +14,28 @@ import java.util.Date;
 public abstract class WorkRequest {
 
     private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
+    private String sender;
+    private String receiver;
     private String status;
     private String result;
     private Date requestDate;
     private Date resolveDate;
+    private int ID;
+   
     
     public WorkRequest(){
         requestDate = new Date();
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    
+    
 
     public String getResult() {
         return result;
@@ -41,19 +53,19 @@ public abstract class WorkRequest {
         this.message = message;
     }
 
-    public UserAccount getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public void setSender(UserAccount sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
-    public UserAccount getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(UserAccount receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 

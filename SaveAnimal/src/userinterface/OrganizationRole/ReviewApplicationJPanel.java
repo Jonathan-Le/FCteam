@@ -3,40 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.CustomerRole;
+package userinterface.OrganizationRole;
 
 import Business.EcoSystem;
-import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
-import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionRequest;
-import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author junyaoli
  */
-public class MyApplicationJPanel extends javax.swing.JPanel {
+public class ReviewApplicationJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MyApplicationJPanel
+     * Creates new form ReviewApplicationJPanel
      */
-        private JPanel userProcessContainer;
-    private UserAccount account;
+    private JPanel userProcessContainer; 
+    private UserAccount account; 
     private EcoSystem business;
-    private Pet pet;
-    private  RescueAnimalOrganization org;
-    
-    public MyApplicationJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, Pet pet, RescueAnimalOrganization org) {
+    private AdoptionRequest request;
+    public ReviewApplicationJPanel(JPanel userProcessContainer, AdoptionRequest request) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
+        this.request=request;
+        
         this.account=account;
         this.business=business;
-        this.org=org;
-        this.pet = pet;
+        
+        budgetjTextField.setText(String.valueOf(request.getBudget()));
+        descriptionjTextField.setText(request.getSelfeDes());
+        budgetjTextField.setEditable(false);
+        descriptionjTextField.setEditable(false);
     }
 
     /**
@@ -48,16 +50,15 @@ public class MyApplicationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         budgetjTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         descriptionjTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
-        ApplyjButton = new javax.swing.JButton();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
-        jLabel1.setText("Please fill in your information !");
+        jLabel1 = new javax.swing.JLabel();
+        ConfirmjButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        resultjTextField = new javax.swing.JTextField();
 
         jLabel4.setText("Annual Budget");
 
@@ -70,21 +71,22 @@ public class MyApplicationJPanel extends javax.swing.JPanel {
             }
         });
 
-        ApplyjButton.setText("Apply");
-        ApplyjButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel1.setText("Please fill in your information !");
+
+        ConfirmjButton.setText("Confirm");
+        ConfirmjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApplyjButtonActionPerformed(evt);
+                ConfirmjButtonActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Result");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(102, 102, 102))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -94,13 +96,19 @@ public class MyApplicationJPanel extends javax.swing.JPanel {
                         .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(budgetjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ApplyjButton))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ConfirmjButton)
+                            .addComponent(resultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,37 +125,44 @@ public class MyApplicationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(ApplyjButton)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(resultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(ConfirmjButton)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
-        userProcessContainer.remove(this);     
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AdoptionProcess dwjp = (AdoptionProcess) component;
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+       
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void ApplyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyjButtonActionPerformed
+    private void ConfirmjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmjButtonActionPerformed
         // TODO add your handling code here:
-        WorkQueue workqeueue = business.getAdoptionQueue();
-        int budget = Integer.valueOf(budgetjTextField.getText());
-        String description = descriptionjTextField.getText();
-        
-        AdoptionRequest request = new AdoptionRequest(description,budget);
-        workqeueue.getWorkRequestList().add(request);
-    }//GEN-LAST:event_ApplyjButtonActionPerformed
+        String result = resultjTextField.getText();
+        request.setResult(result);
+        JOptionPane.showMessageDialog(null, "Confirm successfully");
+    }//GEN-LAST:event_ConfirmjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ApplyjButton;
+    private javax.swing.JButton ConfirmjButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JTextField budgetjTextField;
     private javax.swing.JTextField descriptionjTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField resultjTextField;
     // End of variables declaration//GEN-END:variables
 }

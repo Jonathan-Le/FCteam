@@ -1,5 +1,6 @@
 package Business;
 
+import Business.Customer.Customer;
 import Business.Department.Department;
 import Business.Department.DoctorOrg;
 import Business.Department.HospitalAdminOrg;
@@ -11,6 +12,8 @@ import Business.Enterprise.Enterprise;
 import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
 import Business.Enterprise.hospital.Hospital;
 import Business.Network.Network;
+import Business.Pet.Pet;
+import Business.Role.CustomerRole;
 import Business.Role.DoctorRole;
 import Business.Role.HospitalAdminRole;
 import Business.Role.OrganizationAdminRole;
@@ -34,8 +37,18 @@ public class ConfigureASystem {
         Network network = new Network("Saving Animals");
         system.getNetworkdirectory().getNetworkdirectory().add(network);
         //create an enterprise  
-        Hospital hospital= (Hospital)network.getEnterpriseDirectory().addEnterprise("国际第一宠物医院", Enterprise.EnterpriseType.hospital);
-        RescueAnimalOrganization organization =(RescueAnimalOrganization)network.getEnterpriseDirectory().addEnterprise("国际第一宠物医院", Enterprise.EnterpriseType.RescuOrganization);
+        Hospital hospital= (Hospital)system.getEnterpriseDirectory().addEnterprise("国际宠物医院", Enterprise.EnterpriseType.hospital);
+        RescueAnimalOrganization organization =(RescueAnimalOrganization)system.getEnterpriseDirectory().addEnterprise("国际宠物救助组织", Enterprise.EnterpriseType.RescuOrganization);
+//        system.getEnterpriseDirectory().addEnterprise("国际宠物救助", Enterprise.EnterpriseType.hospital);
+//        system.getEnterpriseDirectory().addEnterprise("国际宠物医院", Enterprise.EnterpriseType.RescuOrganization);
+                
+        //Pets
+        organization.getPetDirectory().AddPet(new Pet("Dog", "1 Month"));
+        organization.getPetDirectory().AddPet(new Pet("Dog", "12 Month"));
+        organization.getPetDirectory().AddPet(new Pet("Cat", "1 Year"));
+        organization.getPetDirectory().AddPet(new Pet("Cat", "8 Month"));
+        organization.getPetDirectory().AddPet(new Pet("Puppy", "7 Month"));
+
         //initialize some organizations
   
         SystemOrg systemOrg  = (SystemOrg)organization.getDepartmentDirectory().createOrganization(Department.DepartmentType.SystemOrg, 0);     
@@ -49,11 +62,18 @@ public class ConfigureASystem {
         Employee workerEmp = systemOrg.getEmployeeDirectory().createEmployee("workerEmp", Department.DepartmentType.WorkerOrg);
         Employee doctorEmp = systemOrg.getEmployeeDirectory().createEmployee("doctorEmp", Department.DepartmentType.DoctorOrg);
         Employee hospitaladminEmp = systemOrg.getEmployeeDirectory().createEmployee("hospitaladminEmp", Department.DepartmentType.HospitalAdminOrg);
+        
+        organization.getEmployeeDirectory().getEmployeeList().add(orgadminEmp);
+        organization.getEmployeeDirectory().getEmployeeList().add(workerEmp);
+        hospital.getEmployeeDirectory().getEmployeeList().add(doctorEmp);
+        hospital.getEmployeeDirectory().getEmployeeList().add(hospitaladminEmp);
         //create user account
         UserAccount orgadminAccount= system.getUserAccountDirectory().createUserAccount("orgadmin", "123", orgadminEmp, new OrganizationAdminRole(Role.RoleType.OrganizationAdmin.getValue(),organization.getEnterpriseID()));
-        UserAccount workerAccount= system.getUserAccountDirectory().createUserAccount("worker", "123", orgadminEmp, new WorkerRole(Role.RoleType.Worker.getValue(),organization.getEnterpriseID()));
-        UserAccount doctorAccount= system.getUserAccountDirectory().createUserAccount("doctor", "123", orgadminEmp, new DoctorRole(Role.RoleType.Doctor.getValue(),hospital.getEnterpriseID()));
-        UserAccount hospitaladminAccount= system.getUserAccountDirectory().createUserAccount("hosadmin", "123", orgadminEmp, new HospitalAdminRole(Role.RoleType.HospitalAdmin.getValue(),hospital.getEnterpriseID()));
+        UserAccount workerAccount= system.getUserAccountDirectory().createUserAccount("worker", "123", workerEmp, new WorkerRole(Role.RoleType.Worker.getValue(),organization.getEnterpriseID()));
+        UserAccount doctorAccount= system.getUserAccountDirectory().createUserAccount("doctor", "123", doctorEmp, new DoctorRole(Role.RoleType.Doctor.getValue(),hospital.getEnterpriseID()));
+        UserAccount hospitaladminAccount= system.getUserAccountDirectory().createUserAccount("hosadmin", "123", hospitaladminEmp, new HospitalAdminRole(Role.RoleType.HospitalAdmin.getValue(),hospital.getEnterpriseID()));
+        //create user account
+        UserAccount userAccount= system.getUserAccountDirectory().createUserAccount("user", "123", new Employee("Jonathan", Department.DepartmentType.SystemOrg), new CustomerRole(Role.RoleType.Customer.getValue(),organization.getEnterpriseID()));
         
          
        Employee employee = system.getEmployeeDirectory().createEmployee("RRH", Department.DepartmentType.SystemOrg);

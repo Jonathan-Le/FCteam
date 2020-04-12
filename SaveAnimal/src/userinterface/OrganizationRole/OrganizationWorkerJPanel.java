@@ -7,7 +7,9 @@ package userinterface.OrganizationRole;
 
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -22,11 +24,24 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer; 
     private UserAccount account; 
     private EcoSystem business;
+    private Enterprise userEnterprise;
     public OrganizationWorkerJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.business=business;
+        
+        System.out.println(account.getEmployee().getName());
+        
+        for (Enterprise object : business.getEnterpriseDirectory().getEnterpriseList()) {
+            if (object.getEmployeeDirectory().getEmployeeList().contains(account.getEmployee())) {
+                String EntName = object.getEnterpriseName();
+                
+                System.out.println(EntName);
+                userEnterprise=business.getEnterpriseDirectory().findEnterprise(EntName) ;
+            }
+        }   
+//         System.out.println(userEnterprise);
     }
 
     /**
@@ -40,51 +55,41 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        petAdoptionjButton = new javax.swing.JButton();
+        EuthanasiajButton = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Work Area: Worker");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 47, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton1.setText("Pet Adoption");
+        petAdoptionjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        petAdoptionjButton.setText("Pet Adoption");
+        petAdoptionjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                petAdoptionjButtonActionPerformed(evt);
+            }
+        });
+        add(petAdoptionjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 142, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton3.setText("Euthanasia");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(147, 147, 147))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51)
-                .addComponent(jButton3)
-                .addGap(65, 65, 65))
-        );
+        EuthanasiajButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        EuthanasiajButton.setText("Euthanasia");
+        add(EuthanasiajButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 222, 153, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void petAdoptionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petAdoptionjButtonActionPerformed
+        // TODO add your handling code here:
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new AdoptionProcess(userProcessContainer, userEnterprise));
+        layout.next(userProcessContainer);    
+    }//GEN-LAST:event_petAdoptionjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EuthanasiajButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton petAdoptionjButton;
     // End of variables declaration//GEN-END:variables
 }

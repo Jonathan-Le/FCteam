@@ -6,7 +6,9 @@
 package userinterface.OrganizationRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -22,30 +24,34 @@ public class AdoptionProcess extends javax.swing.JPanel {
     /**
      * Creates new form AdoptionProcess
      */
-        private JPanel userProcessContainer; 
+    private JPanel userProcessContainer; 
     private UserAccount account; 
     private EcoSystem business;
-    public AdoptionProcess(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    private Enterprise userEnterprise;
+    public AdoptionProcess(JPanel userProcessContainer,Enterprise userEnterprise ) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.account=account;
-        this.business=business;
+        this.userEnterprise=userEnterprise;
+//        this.account=account;
+//        this.business=business;        
         populateRequestTable();
+       
     }
        public void populateRequestTable(){
 
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);  
-            ArrayList<WorkRequest> worklist = business.getAdoptionQueue().getWorkRequestList();          
+            ArrayList<WorkRequest> worklist = userEnterprise.getAdoptionQueue().getWorkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
-                    Object[] row = new Object[6];
-                    row[0]= apl.getSender();
-                    row[1]=apl.getReceiver();
-                    row[2]=apl.getRequestDate();
-                    row[3]=apl.getResolveDate();
-                    row[4]=apl.getStatus();
-                    row[5]=apl.getResult();
+                    Object[] row = new Object[7];
+                    row[0]= apl.getID();
+                    row[1]= apl.getSender();
+                    row[2]=apl.getReceiver();
+                    row[3]=apl.getRequestDate();
+                    row[4]=apl.getResolveDate();
+                    row[5]=apl.getStatus();
+                    row[6]=apl.getResult();
                     dtm.addRow(row);
                 }
             }    
@@ -63,7 +69,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         applicationjTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        enterjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
@@ -71,17 +77,17 @@ public class AdoptionProcess extends javax.swing.JPanel {
 
         applicationjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Sender", "Reciever", "SendDate", "ResolveDate", "Status", "Result"
+                "ID", "Sender", "Reciever", "SendDate", "ResolveDate", "Status", "Result"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -96,9 +102,15 @@ public class AdoptionProcess extends javax.swing.JPanel {
             applicationjTable.getColumnModel().getColumn(3).setResizable(false);
             applicationjTable.getColumnModel().getColumn(4).setResizable(false);
             applicationjTable.getColumnModel().getColumn(5).setResizable(false);
+            applicationjTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        jButton1.setText("Enter");
+        enterjButton.setText("Enter");
+        enterjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterjButtonActionPerformed(evt);
+            }
+        });
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +134,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backJButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(enterjButton))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -136,7 +148,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
-                    .addComponent(jButton1))
+                    .addComponent(enterjButton))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -149,11 +161,23 @@ public class AdoptionProcess extends javax.swing.JPanel {
         
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void enterjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterjButtonActionPerformed
+        // TODO add your handling code here:
+        int row = applicationjTable.getSelectedRow();
+        int requestID= Integer.valueOf(applicationjTable.getValueAt(row,0).toString());
+        
+        AdoptionRequest adoptionRequest =(AdoptionRequest) userEnterprise.getAdoptionQueue().findWorkRequest(requestID);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new ReviewApplicationJPanel(userProcessContainer, adoptionRequest));
+        layout.next(userProcessContainer);    
+        
+    }//GEN-LAST:event_enterjButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable applicationjTable;
     private javax.swing.JButton backJButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enterjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

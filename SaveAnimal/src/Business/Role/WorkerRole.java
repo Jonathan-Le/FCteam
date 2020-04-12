@@ -10,6 +10,7 @@ import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.CustomerRole.CustomerManageJPanel;
 import userinterface.Organization.OrganizationManagementJPanel;
+import userinterface.OrganizationRole.OrganizationWorkerJPanel;
 
 /**
  *
@@ -20,7 +21,7 @@ public class WorkerRole extends Role {
         super(roleType,  enterpriseID);
     }
         public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new OrganizationManagementJPanel(userProcessContainer, account, business);
+        return new OrganizationWorkerJPanel(userProcessContainer, account, business);
     }
     
     
