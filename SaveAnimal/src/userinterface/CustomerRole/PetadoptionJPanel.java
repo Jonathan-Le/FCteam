@@ -278,6 +278,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         int row = petjTable.getSelectedRow();
         if (row<0) {
             JOptionPane.showMessageDialog(null,"Selev a row");
+            return;
         }
         int ID = Integer.valueOf(petjTable.getValueAt(row, 0).toString());       
         Pet pet =(Pet)org.getPetDirectory().findPet(ID);       
@@ -291,6 +292,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         int row = orgjTable.getSelectedRow();
         if (row<0) {
             JOptionPane.showMessageDialog(null,"Selev a row");
+            return;
         }
         String Name = (String)orgjTable.getValueAt(row, 1);
         org =(RescueAnimalOrganization)business.getEnterpriseDirectory().findEnterprise(Name);
