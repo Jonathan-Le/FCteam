@@ -6,6 +6,9 @@ package Business.Employee;
 
 import Business.Department.Department;
 import Business.Department.Department.DepartmentType;
+import Business.Pet.Pet;
+import com.db4o.collections.ActivatableArrayList;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -25,6 +28,7 @@ public class Employee {
     private Date leaveTime;
     private int level;
     private double salary;
+    private ArrayList<Pet> PetList;
     private static int count = 0;
 
     public Employee(String name, DepartmentType dep ) {
@@ -42,9 +46,16 @@ public class Employee {
         if (depType == DepartmentType.WorkerOrg) {
             this.salary = 1500;
         }
+        if (depType == DepartmentType.CustomerOrg) {
+            PetList = new ArrayList<>();
+        }
 
         this.registerTime = new Date();
         id = ++count;
+    }
+
+    public ArrayList<Pet> getPetList() {
+        return PetList;
     }
 
     public String getName() {

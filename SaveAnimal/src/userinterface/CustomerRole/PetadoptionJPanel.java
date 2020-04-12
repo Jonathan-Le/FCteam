@@ -50,7 +50,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);                 
             
-            ArrayList<WorkRequest> worklist = account.getWorkQueue().getWorkRequestList();          
+            ArrayList<WorkRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];
@@ -120,6 +120,8 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         applicationjTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         orgjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -133,8 +135,11 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orgjTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 349, 289, 106));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Rescue Organiztion List");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 318, 243, -1));
 
         sendjButton.setText("Send Application");
         sendjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +147,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 sendjButtonActionPerformed(evt);
             }
         });
+        add(sendjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(524, 473, -1, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +155,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 50, -1, -1));
 
         petjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,8 +173,11 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             petjTable.getColumnModel().getColumn(2).setHeaderValue("Age");
         }
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 349, 285, 106));
+
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel2.setText("Pet List");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 318, -1, -1));
 
         choosejButton.setText("Choose");
         choosejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +185,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 choosejButtonActionPerformed(evt);
             }
         });
+        add(choosejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 473, -1, -1));
 
         applicationjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,72 +208,11 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(applicationjTable);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 124, 631, 164));
+
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel3.setText("My Application");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(choosejButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(145, 145, 145)
-                                                .addComponent(sendjButton))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(162, 162, 162)
-                                                .addComponent(jLabel2)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel3)))
-                .addContainerGap(130, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(backJButton)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(choosejButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sendjButton)))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 81, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

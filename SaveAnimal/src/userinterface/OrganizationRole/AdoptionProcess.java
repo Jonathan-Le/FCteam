@@ -41,7 +41,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
 
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);  
-            ArrayList<WorkRequest> worklist = userEnterprise.getAdoptionQueue().getWorkRequestList();          
+            ArrayList<WorkRequest> worklist = userEnterprise.getAdoptionQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];
@@ -166,7 +166,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
         int row = applicationjTable.getSelectedRow();
         int requestID= Integer.valueOf(applicationjTable.getValueAt(row,0).toString());
         
-        AdoptionRequest adoptionRequest =(AdoptionRequest) userEnterprise.getAdoptionQueue().findWorkRequest(requestID);
+        AdoptionRequest adoptionRequest =(AdoptionRequest) userEnterprise.getAdoptionQueue().findAdoptionRequest(requestID);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new ReviewApplicationJPanel(userProcessContainer, adoptionRequest));
         layout.next(userProcessContainer);    
