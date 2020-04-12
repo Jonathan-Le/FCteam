@@ -17,6 +17,15 @@ public class WorkQueue {
     public WorkQueue() {
         workRequestList = new ArrayList();
     }
+    
+    public WorkRequest findWorkRequest(int ID) {
+           
+        for (WorkRequest request : workRequestList)
+            if (request.getID()==ID){
+                return request;       
+        }
+        return null;
+    }
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;

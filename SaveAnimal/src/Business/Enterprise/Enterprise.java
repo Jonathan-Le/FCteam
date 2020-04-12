@@ -8,6 +8,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
+import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -20,8 +21,9 @@ public abstract class Enterprise {
     private int enterpriseID;
     private UserAccountDirectory userAccountDirectory;
     private EmployeeDirectory employeeDirectory;
-    private DepartmentDirectory AppartmentDirectory;
+    private DepartmentDirectory DepartmentDirectory;
     private EnterpriseType enterpriseType;
+    private WorkQueue adoptionQueue;
     private static int counter = 0;
 
     public enum EnterpriseType {
@@ -39,9 +41,18 @@ public abstract class Enterprise {
         this.enterpriseName = name;
         this.enterpriseType = type;
         this.enterpriseID = ++counter;
-        AppartmentDirectory = new DepartmentDirectory();
+        DepartmentDirectory = new DepartmentDirectory();
         userAccountDirectory = new UserAccountDirectory();
         employeeDirectory = new EmployeeDirectory();
+        this.adoptionQueue = new WorkQueue();
+    }
+
+    public WorkQueue getAdoptionQueue() {
+        return adoptionQueue;
+    }
+
+    public void setAdoptionQueue(WorkQueue adoptionQueue) {
+        this.adoptionQueue = adoptionQueue;
     }
 
     public String getEnterpriseName() {
@@ -76,12 +87,12 @@ public abstract class Enterprise {
         this.employeeDirectory = employeeDirectory;
     }
 
-    public DepartmentDirectory getAppartmentDirectory() {
-        return AppartmentDirectory;
+    public DepartmentDirectory getDepartmentDirectory() {
+        return DepartmentDirectory;
     }
 
     public void setOrganizationDirectory(DepartmentDirectory AppartmentDirectory) {
-        this.AppartmentDirectory = AppartmentDirectory;
+        this.DepartmentDirectory = AppartmentDirectory;
     }
 
     public EnterpriseType getEnterpriseType() {

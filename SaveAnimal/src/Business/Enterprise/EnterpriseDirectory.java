@@ -41,12 +41,11 @@ public class EnterpriseDirectory {
         return enterprise;
     }
     
-    public Enterprise findEnterprise(int ID){
+    public Enterprise findEnterprise(String name){
         for (Enterprise enterprise : enterpriseList) {
-            if (enterprise.getEnterpriseID()==ID) {
+            if (enterprise.getEnterpriseName().equals(name)) {
                 return enterprise;
-            }
-            JOptionPane.showMessageDialog(null, "No enterprise");
+            }  
         }
         return null;
     }

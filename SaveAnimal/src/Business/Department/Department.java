@@ -33,6 +33,7 @@ public abstract class Department {
         HospitalAdminOrg("HospitalAdmin Org"), 
         OrganizationAdminOrg("OrganizationAdmin Org"),
         SystemOrg("System Org"),
+        DoctorOrg("Doctor Org"),
         WorkerOrg("Worker Org");
         
 //        PurchasingAgent("PurchasingAgent Org"), 
