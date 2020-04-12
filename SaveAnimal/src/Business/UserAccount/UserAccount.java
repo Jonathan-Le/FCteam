@@ -5,8 +5,10 @@
 package Business.UserAccount;
 
 import Business.Employee.Employee;
+import Business.Pet.Pet;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,10 +21,17 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private ArrayList<Pet> petlist;
 
     public UserAccount() {
         workQueue = new WorkQueue();
+        petlist = new ArrayList<>();
     }
+
+    public ArrayList<Pet> getPetlist() {
+        return petlist;
+    }
+    
  
     public String getUsername() {
         return username;

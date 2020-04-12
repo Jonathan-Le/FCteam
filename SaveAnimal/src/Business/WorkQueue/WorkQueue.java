@@ -12,22 +12,42 @@ import java.util.ArrayList;
  */
 public class WorkQueue {
     
-    private ArrayList<WorkRequest> workRequestList;
+    private ArrayList<WorkRequest> adoptionkRequestList;
+    private ArrayList<WorkRequest> treatmentRequestList;
 
     public WorkQueue() {
-        workRequestList = new ArrayList();
+        adoptionkRequestList = new ArrayList();
+        treatmentRequestList= new ArrayList();
     }
     
-    public WorkRequest findWorkRequest(int ID) {
+    public WorkRequest findAdoptionRequest(int ID) {
            
-        for (WorkRequest request : workRequestList)
+        for (WorkRequest request : adoptionkRequestList)
+            if (request.getID()==ID){
+                return request;       
+        }
+        return null;
+    }
+    
+     public WorkRequest findTreatmentRequest(int ID) {
+           
+        for (WorkRequest request : treatmentRequestList)
             if (request.getID()==ID){
                 return request;       
         }
         return null;
     }
 
-    public ArrayList<WorkRequest> getWorkRequestList() {
-        return workRequestList;
+    public ArrayList<WorkRequest> getTreatmentRequestList() {
+        return treatmentRequestList;
+    }
+
+    public void setTreatmentRequestList(ArrayList<WorkRequest> treatmentRequestList) {
+        this.treatmentRequestList = treatmentRequestList;
+    }
+    
+
+    public ArrayList<WorkRequest> getAdoptionkRequestList() {
+        return adoptionkRequestList;
     }
 }

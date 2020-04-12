@@ -5,6 +5,9 @@
  */
 package Business.Customer;
 
+import Business.Pet.Pet;
+import java.util.ArrayList;
+
 /**
  *
  * @author harold
@@ -12,6 +15,15 @@ package Business.Customer;
 public class Customer {
     int ID;
     String name;
+    ArrayList<Pet> PetList;
+
+    public Customer() {
+        PetList=new ArrayList();
+    }
+
+    public ArrayList<Pet> getPetList() {
+        return PetList;
+    }
 
     public int getID() {
         return ID;

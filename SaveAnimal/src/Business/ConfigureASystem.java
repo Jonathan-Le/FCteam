@@ -73,14 +73,17 @@ public class ConfigureASystem {
         UserAccount doctorAccount= system.getUserAccountDirectory().createUserAccount("doctor", "123", doctorEmp, new DoctorRole(Role.RoleType.Doctor.getValue(),hospital.getEnterpriseID()));
         UserAccount hospitaladminAccount= system.getUserAccountDirectory().createUserAccount("hosadmin", "123", hospitaladminEmp, new HospitalAdminRole(Role.RoleType.HospitalAdmin.getValue(),hospital.getEnterpriseID()));
         //create user account
-        UserAccount userAccount= system.getUserAccountDirectory().createUserAccount("user", "123", new Employee("Jonathan", Department.DepartmentType.SystemOrg), new CustomerRole(Role.RoleType.Customer.getValue(),organization.getEnterpriseID()));
         
+        Employee CusEmployee = systemOrg.getEmployeeDirectory().createEmployee("cusEmp", Department.DepartmentType.CustomerOrg); 
+        UserAccount userAccount= system.getUserAccountDirectory().createUserAccount("user", "123", CusEmployee, new CustomerRole(Role.RoleType.Customer.getValue(),organization.getEnterpriseID()));
+        userAccount.getPetlist().add(new Pet("dog", "12 year"));// 
+        userAccount.getPetlist().add(new Pet("cat", "10 month"));
          
        Employee employee = system.getEmployeeDirectory().createEmployee("RRH", Department.DepartmentType.SystemOrg);
         
        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole("admin",1));
         
-        return system;
+       return system;
     }
     
 }

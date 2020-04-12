@@ -57,12 +57,19 @@ public class fillinformationJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         ApplyjButton = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Please fill in your information !");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 75, -1, -1));
 
         jLabel4.setText("Annual Budget");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 144, -1, -1));
+        add(budgetjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 139, 119, -1));
 
         jLabel5.setText("Personal Description");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 188, -1, -1));
+        add(descriptionjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 183, 119, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +77,7 @@ public class fillinformationJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, -1, -1));
 
         ApplyjButton.setText("Apply");
         ApplyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,51 +85,7 @@ public class fillinformationJPanel extends javax.swing.JPanel {
                 ApplyjButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(102, 102, 102))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(budgetjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ApplyjButton))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(backJButton)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(budgetjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(ApplyjButton)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        add(ApplyjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 239, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -149,8 +113,8 @@ public class fillinformationJPanel extends javax.swing.JPanel {
         request.setReceiver(org.getEnterpriseName());
         request.setSender(account.getUsername());
         request.setStatus("Pending");
-        entworkqeueue.getWorkRequestList().add(request);
-        userWorkQueue.getWorkRequestList().add(request);
+        entworkqeueue.getAdoptionkRequestList().add(request);
+        userWorkQueue.getAdoptionkRequestList().add(request);
         JOptionPane.showMessageDialog(null,"Send successfully");
     }//GEN-LAST:event_ApplyjButtonActionPerformed
 
