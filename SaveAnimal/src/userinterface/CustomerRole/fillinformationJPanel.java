@@ -6,7 +6,7 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
-import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
+import Business.Enterprise.Enterprise;
 import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionRequest;
@@ -29,9 +29,9 @@ public class fillinformationJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private EcoSystem business;
     private Pet pet;
-    private  RescueAnimalOrganization org;
+    private  Enterprise org;
     
-    public fillinformationJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, Pet pet, RescueAnimalOrganization org) {
+    public fillinformationJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, Pet pet, Enterprise org) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;

@@ -2,15 +2,8 @@ package Business;
 
 import Business.Customer.Customer;
 import Business.Department.Department;
-import Business.Department.DoctorOrg;
-import Business.Department.HospitalAdminOrg;
-import Business.Department.OrganizationAdminOrg;
-import Business.Department.SystemOrg;
-import Business.Department.WorkerOrg;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
-import Business.Enterprise.hospital.Hospital;
 import Business.Network.Network;
 import Business.Pet.Pet;
 import Business.Role.CustomerRole;
@@ -34,11 +27,11 @@ public class ConfigureASystem {
         EcoSystem system = EcoSystem.getInstance();
         
         //Create a network
-        Network network = new Network("Saving Animals");
-        system.getNetworkdirectory().getNetworkdirectory().add(network);
+        Network network = system.getNetworkdirectory().CreaNetwork("Saving Animals");
+        Network network1 = system.getNetworkdirectory().CreaNetwork(" aaa");
         //create an enterprise  
-        Hospital hospital= (Hospital)system.getEnterpriseDirectory().addEnterprise("国际宠物医院", Enterprise.EnterpriseType.hospital);
-        RescueAnimalOrganization organization =(RescueAnimalOrganization)system.getEnterpriseDirectory().addEnterprise("国际宠物救助组织", Enterprise.EnterpriseType.RescuOrganization);
+        Enterprise hospital= network.getEnterpriseDirectory().addEnterprise("国际宠物医院");
+        Enterprise organization =network.getEnterpriseDirectory().addEnterprise("国际宠物救助组织");
 //        system.getEnterpriseDirectory().addEnterprise("国际宠物救助", Enterprise.EnterpriseType.hospital);
 //        system.getEnterpriseDirectory().addEnterprise("国际宠物医院", Enterprise.EnterpriseType.RescuOrganization);
                 
@@ -51,17 +44,17 @@ public class ConfigureASystem {
 
         //initialize some organizations
   
-        SystemOrg systemOrg  = (SystemOrg)organization.getDepartmentDirectory().createOrganization(Department.DepartmentType.SystemOrg, 0);     
-        OrganizationAdminOrg organizationAdminOrg = (OrganizationAdminOrg)organization.getDepartmentDirectory().createOrganization(Department.DepartmentType.OrganizationAdminOrg, 0);
-        WorkerOrg workerOrg  = (WorkerOrg)organization.getDepartmentDirectory().createOrganization(Department.DepartmentType.WorkerOrg, 0);
-        DoctorOrg doctorOrg = (DoctorOrg)hospital.getDepartmentDirectory().createOrganization(Department.DepartmentType.DoctorOrg, 0);
-        HospitalAdminOrg hospitalAdminOrg  = (HospitalAdminOrg)hospital.getDepartmentDirectory().createOrganization(Department.DepartmentType.HospitalAdminOrg, 0);
+        Department systemOrg  = organization.getDepartmentDirectory().createOrganization("systemOrg");     
+        Department organizationAdminOrg = organization.getDepartmentDirectory().createOrganization("organizationAdminOrg");
+        Department workerOrg  = organization.getDepartmentDirectory().createOrganization("workerOrg");
+        Department doctorOrg = hospital.getDepartmentDirectory().createOrganization("doctorOrg");
+        Department hospitalAdminOrg  = hospital.getDepartmentDirectory().createOrganization("hospitalAdminOrg");
         //have some employees 
-        Employee sysEmp = systemOrg.getEmployeeDirectory().createEmployee("sysEmp", Department.DepartmentType.SystemOrg);   
-        Employee orgadminEmp = systemOrg.getEmployeeDirectory().createEmployee("orgadminEmp", Department.DepartmentType.OrganizationAdminOrg);
-        Employee workerEmp = systemOrg.getEmployeeDirectory().createEmployee("workerEmp", Department.DepartmentType.WorkerOrg);
-        Employee doctorEmp = systemOrg.getEmployeeDirectory().createEmployee("doctorEmp", Department.DepartmentType.DoctorOrg);
-        Employee hospitaladminEmp = systemOrg.getEmployeeDirectory().createEmployee("hospitaladminEmp", Department.DepartmentType.HospitalAdminOrg);
+        Employee sysEmp = systemOrg.getEmployeeDirectory().createEmployee("sysEmp");   
+        Employee orgadminEmp = organizationAdminOrg.getEmployeeDirectory().createEmployee("orgadminEmp");
+        Employee workerEmp = workerOrg.getEmployeeDirectory().createEmployee("workerEmp");
+        Employee doctorEmp = doctorOrg.getEmployeeDirectory().createEmployee("doctorEmp");
+        Employee hospitaladminEmp = hospitalAdminOrg.getEmployeeDirectory().createEmployee("hospitaladminEmp");
         
         organization.getEmployeeDirectory().getEmployeeList().add(orgadminEmp);
         organization.getEmployeeDirectory().getEmployeeList().add(workerEmp);
@@ -74,14 +67,14 @@ public class ConfigureASystem {
         UserAccount hospitaladminAccount= system.getUserAccountDirectory().createUserAccount("hosadmin", "123", hospitaladminEmp, new HospitalAdminRole(Role.RoleType.HospitalAdmin.getValue(),hospital.getEnterpriseID()));
         //create user account
         
-        Employee CusEmployee = systemOrg.getEmployeeDirectory().createEmployee("cusEmp", Department.DepartmentType.CustomerOrg); 
+        Employee CusEmployee = systemOrg.getEmployeeDirectory().createEmployee("cusEmp"); 
         UserAccount userAccount= system.getUserAccountDirectory().createUserAccount("user", "123", CusEmployee, new CustomerRole(Role.RoleType.Customer.getValue(),organization.getEnterpriseID()));
         userAccount.getPetlist().add(new Pet("dog", "12 year"));// 
         userAccount.getPetlist().add(new Pet("cat", "10 month"));
          
-       Employee employee = system.getEmployeeDirectory().createEmployee("RRH", Department.DepartmentType.SystemOrg);
+       Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
         
-       UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole("admin",1));
+       UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "123", employee, new SystemAdminRole("admin",1));
         
        return system;
     }

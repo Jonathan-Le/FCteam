@@ -7,9 +7,7 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Enterprise.EnterpriseDirectory;
-import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
 import Business.Organization;
 import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
@@ -34,7 +32,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;
-    RescueAnimalOrganization org;
+    private Enterprise org;
     public PetadoptionJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
@@ -73,7 +71,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             ArrayList<Enterprise> entlist = business.getEnterpriseDirectory().getEnterpriseList();          
             if (entlist != null){               
                 for(Enterprise ent : entlist){
-                    if (ent.getEnterpriseType().equals(EnterpriseType.RescuOrganization)) {
+                    if (ent.getEnterpriseType().equals("RescuOrganization")) {
                     Object[] row = new Object[2];
                     row[0]=ent.getEnterpriseID();
                     row[1]=ent.getEnterpriseName();
@@ -83,7 +81,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 }
             }    
     } 
-    public void populatePetTable(RescueAnimalOrganization org){
+    public void populatePetTable(Enterprise org){
 
             DefaultTableModel dtm = (DefaultTableModel) petjTable.getModel();
             dtm.setRowCount(0);           
@@ -245,7 +243,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             return;
         }
         String Name = (String)orgjTable.getValueAt(row, 1);
-        org =(RescueAnimalOrganization)business.getEnterpriseDirectory().findEnterprise(Name);
+        org =business.getEnterpriseDirectory().findEnterprise(Name);
         populatePetTable(org);
 
     }//GEN-LAST:event_choosejButtonActionPerformed

@@ -6,7 +6,7 @@
 package userinterface.OrganizationRole;
 
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise1;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkRequest;
@@ -27,8 +27,8 @@ public class AdoptionProcess extends javax.swing.JPanel {
     private JPanel userProcessContainer; 
     private UserAccount account; 
     private EcoSystem business;
-    private Enterprise userEnterprise;
-    public AdoptionProcess(JPanel userProcessContainer,Enterprise userEnterprise ) {
+    private Enterprise1 userEnterprise;
+    public AdoptionProcess(JPanel userProcessContainer,Enterprise1 userEnterprise ) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userEnterprise=userEnterprise;
