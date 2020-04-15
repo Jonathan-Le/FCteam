@@ -5,6 +5,8 @@
  */
 package Business.Pet;
 
+import java.util.UUID;
+
 /**
  *
  * @author junyaoli
@@ -20,7 +22,17 @@ public class Pet {
         
         this.Age = Age;
         this.species = species;
- 
+        ID=getUUID();
+    }
+     public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
     }
 
     public int getID() {

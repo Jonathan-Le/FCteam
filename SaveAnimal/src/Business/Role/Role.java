@@ -41,6 +41,30 @@ public abstract class Role {
             return value;
         }
     }
+
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public int getOrgID() {
+        return orgID;
+    }
+
+    public void setOrgID(int orgID) {
+        this.orgID = orgID;
+    }
+
+    public int getEnterpriseID() {
+        return enterpriseID;
+    }
+
+    public void setEnterpriseID(int enterpriseID) {
+        this.enterpriseID = enterpriseID;
+    }
     
         public Role(String roleType,  int enterpriseID) {
         this.roleType = roleType;

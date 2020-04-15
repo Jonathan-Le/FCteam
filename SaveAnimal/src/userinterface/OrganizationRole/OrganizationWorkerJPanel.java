@@ -7,7 +7,7 @@ package userinterface.OrganizationRole;
 
 
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise1;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -24,7 +24,7 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer; 
     private UserAccount account; 
     private EcoSystem business;
-    private Enterprise userEnterprise;
+    private Enterprise1 userEnterprise;
     public OrganizationWorkerJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
@@ -33,7 +33,7 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
         
         System.out.println(account.getEmployee().getName());
         
-        for (Enterprise object : business.getEnterpriseDirectory().getEnterpriseList()) {
+        for (Enterprise1 object : business.getEnterpriseDirectory().getEnterpriseList()) {
             if (object.getEmployeeDirectory().getEmployeeList().contains(account.getEmployee())) {
                 String EntName = object.getEnterpriseName();
                 

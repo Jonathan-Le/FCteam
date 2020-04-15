@@ -18,14 +18,24 @@ public class UserAccount {
     
     private String username;
     private String password;
+    private int id;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
     private ArrayList<Pet> petlist;
 
+
     public UserAccount() {
         workQueue = new WorkQueue();
         petlist = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<Pet> getPetlist() {

@@ -7,6 +7,7 @@ package Business.Customer;
 
 import Business.Pet.Pet;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -19,8 +20,19 @@ public class Customer {
 
     public Customer() {
         PetList=new ArrayList();
+        ID=getUUID();
     }
-
+    public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
+    
     public ArrayList<Pet> getPetList() {
         return PetList;
     }
