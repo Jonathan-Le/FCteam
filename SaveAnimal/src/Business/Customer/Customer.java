@@ -18,8 +18,9 @@ public class Customer {
     String name;
     ArrayList<Pet> PetList;
 
-    public Customer() {
+    public Customer(String name) {
         PetList=new ArrayList();
+        this.name=name;
         ID=getUUID();
     }
     public int getUUID(){

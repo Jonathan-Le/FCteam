@@ -6,6 +6,7 @@ package Business.WorkQueue;
 
 import Business.UserAccount.UserAccount;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 public abstract class WorkRequest {
 
-    private String message;
+    private String title;
     private String sender;
     private String receiver;
     private String status;
@@ -25,8 +26,19 @@ public abstract class WorkRequest {
     
     public WorkRequest(){
         requestDate = new Date();
+        ID=getUUID();
     }
-
+    
+    public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
     public int getID() {
         return ID;
     }
@@ -45,12 +57,12 @@ public abstract class WorkRequest {
         this.result = result;
     }
 
-    public String getMessage() {
-        return message;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSender() {

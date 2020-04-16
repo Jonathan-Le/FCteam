@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  * @author raunak
  */
 public class CustomerRole extends Role{
-        public CustomerRole(String roleType,  int enterpriseID) {
-        super(roleType,  enterpriseID);
+        public CustomerRole(String roleType) {
+        super(roleType);
     }
     
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {

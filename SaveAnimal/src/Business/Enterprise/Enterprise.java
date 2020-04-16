@@ -26,7 +26,7 @@ public class Enterprise {
     private EmployeeDirectory employeeDirectory;
     private DepartmentDirectory DepartmentDirectory;
     private EnterpriseType enterpriseType;
-    private WorkQueue adoptionQueue;
+    private WorkQueue WorkQueue;
     private PetDirectory petDirectory;
 
 
@@ -48,7 +48,7 @@ public class Enterprise {
         DepartmentDirectory = new DepartmentDirectory();
         userAccountDirectory = new UserAccountDirectory();
         employeeDirectory = new EmployeeDirectory();
-        this.adoptionQueue = new WorkQueue();
+        this.WorkQueue = new WorkQueue();
         petDirectory=new PetDirectory();
         enterpriseID=getUUID();
     }
@@ -73,12 +73,12 @@ public class Enterprise {
         num=Math.abs(num);
         return  num;      
     }
-    public WorkQueue getAdoptionQueue() {
-        return adoptionQueue;
+    public WorkQueue getWorkQueue() {
+        return WorkQueue;
     }
 
-    public void setAdoptionQueue(WorkQueue adoptionQueue) {
-        this.adoptionQueue = adoptionQueue;
+    public void setWorkQueue(WorkQueue WorkQueue) {
+        this.WorkQueue = WorkQueue;
     }
 
     public String getEnterpriseName() {
