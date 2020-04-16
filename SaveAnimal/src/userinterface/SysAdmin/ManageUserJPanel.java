@@ -43,8 +43,11 @@ public class ManageUserJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[4];
                     row[0]=request.getId();
                     row[1]=request.getUsername();  
-                    row[2]=request.getRole();
-                    row[3]=request.getEmployee();
+                    row[2]=request.getRole().getRoleType();
+                        if (request.getEmployee()==null) {
+                        row[3]="null";
+                        }else row[3]=request.getEmployee().getName();
+                    
                     dtm.addRow(row);
                 }
             }
@@ -57,8 +60,8 @@ public class ManageUserJPanel extends javax.swing.JPanel {
              Object[] row = new Object[4];
                     row[0]=account.getId();
                     row[1]=account.getUsername();  
-                    row[2]=account.getRole();
-                    row[3]=account.getEmployee();
+                    row[2]=account.getRole().getRoleType();
+                    row[3]=account.getEmployee().getName();
                     dtm.addRow(row);                    
 //           
     }

@@ -16,6 +16,7 @@ public class Network {
      private String name;
     private int id;
     private EnterpriseDirectory enterpriseDirectory;
+    
 
 //    private static int count = 1;
 

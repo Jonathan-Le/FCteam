@@ -71,6 +71,10 @@ public abstract class Role {
 //        this.orgID = orgID;
         this.enterpriseID = enterpriseID;
     }
+               public Role(String roleType) {
+        this.roleType = roleType;
+//        this.orgID = orgID;
+    }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account,  

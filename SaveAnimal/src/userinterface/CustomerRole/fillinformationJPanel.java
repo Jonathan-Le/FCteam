@@ -103,13 +103,13 @@ public class fillinformationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         UserAccount receiver = business.getUserAccountDirectory().findUser(org.getEnterpriseName());
         
-        WorkQueue entworkqeueue = org.getAdoptionQueue();
+        WorkQueue entworkqeueue = org.getWorkQueue();
         WorkQueue userWorkQueue=account.getWorkQueue();
         
         int budget = Integer.valueOf(budgetjTextField.getText());
         String description = descriptionjTextField.getText();
         
-        AdoptionRequest request = new AdoptionRequest(description,budget);
+        AdoptionRequest request = new AdoptionRequest(description,budget,pet);
         request.setReceiver(org.getEnterpriseName());
         request.setSender(account.getUsername());
         request.setStatus("Pending");

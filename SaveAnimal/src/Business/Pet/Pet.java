@@ -6,6 +6,7 @@
 package Business.Pet;
 
 import java.util.UUID;
+import java.util.jar.Attributes;
 
 /**
  *
@@ -14,12 +15,13 @@ import java.util.UUID;
 public class Pet {
 //    private String Weight;
     private int ID;
+    private String name ;
     private String Age;
     private String species;
     final static int count= 0 ;
 
-    public Pet(String species, String Age ) {
-        
+    public Pet(String name,String species, String Age ) {
+        this.name=name;
         this.Age = Age;
         this.species = species;
         ID=getUUID();
@@ -34,6 +36,15 @@ public class Pet {
         num=Math.abs(num);
         return  num;      
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+     
 
     public int getID() {
         return ID;

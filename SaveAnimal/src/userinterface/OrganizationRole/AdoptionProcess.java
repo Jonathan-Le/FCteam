@@ -6,7 +6,7 @@
 package userinterface.OrganizationRole;
 
 import Business.EcoSystem;
-import Business.Enterprise.Enterprise1;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkRequest;
@@ -27,8 +27,8 @@ public class AdoptionProcess extends javax.swing.JPanel {
     private JPanel userProcessContainer; 
     private UserAccount account; 
     private EcoSystem business;
-    private Enterprise1 userEnterprise;
-    public AdoptionProcess(JPanel userProcessContainer,Enterprise1 userEnterprise ) {
+    private Enterprise userEnterprise;
+    public AdoptionProcess(JPanel userProcessContainer,Enterprise userEnterprise ) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userEnterprise=userEnterprise;
@@ -41,7 +41,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
 
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);  
-            ArrayList<WorkRequest> worklist = userEnterprise.getAdoptionQueue().getAdoptionkRequestList();          
+            ArrayList<AdoptionRequest> worklist = userEnterprise.getWorkQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];
@@ -73,7 +73,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
-        jLabel1.setText("Application List");
+        jLabel1.setText("Adoption Application List");
 
         applicationjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,26 +124,25 @@ public class AdoptionProcess extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backJButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(enterjButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(backJButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(enterjButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(229, 229, 229))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -166,7 +165,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
         int row = applicationjTable.getSelectedRow();
         int requestID= Integer.valueOf(applicationjTable.getValueAt(row,0).toString());
         
-        AdoptionRequest adoptionRequest =(AdoptionRequest) userEnterprise.getAdoptionQueue().findAdoptionRequest(requestID);
+        AdoptionRequest adoptionRequest =(AdoptionRequest) userEnterprise.getWorkQueue().findRequest(requestID);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add(new ReviewApplicationJPanel(userProcessContainer, adoptionRequest));
         layout.next(userProcessContainer);    

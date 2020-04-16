@@ -12,21 +12,39 @@ import java.util.ArrayList;
  */
 public class WorkQueue {
     
-    private ArrayList<WorkRequest> adoptionkRequestList;
+    private ArrayList<AdoptionRequest> adoptionkRequestList;
     private ArrayList<WorkRequest> treatmentRequestList;
+    private ArrayList<EuthunisiaRequest> EutRequestList;
 
     public WorkQueue() {
         adoptionkRequestList = new ArrayList();
         treatmentRequestList= new ArrayList();
+        EutRequestList= new ArrayList();
     }
     
-    public WorkRequest findAdoptionRequest(int ID) {
+    public WorkRequest findRequest(int ID) {
            
         for (WorkRequest request : adoptionkRequestList)
             if (request.getID()==ID){
                 return request;       
         }
+         for (WorkRequest request : treatmentRequestList)
+            if (request.getID()==ID){
+                return request;       
+        }
+          for (WorkRequest request : EutRequestList)
+            if (request.getID()==ID){
+                return request;       
+        }
         return null;
+    }
+
+    public ArrayList<EuthunisiaRequest> getEutRequestList() {
+        return EutRequestList;
+    }
+
+    public void setEutRequestList(ArrayList<EuthunisiaRequest> EutRequestList) {
+        this.EutRequestList = EutRequestList;
     }
     
      public WorkRequest findTreatmentRequest(int ID) {
@@ -47,7 +65,7 @@ public class WorkQueue {
     }
     
 
-    public ArrayList<WorkRequest> getAdoptionkRequestList() {
+    public ArrayList<AdoptionRequest> getAdoptionkRequestList() {
         return adoptionkRequestList;
     }
 }

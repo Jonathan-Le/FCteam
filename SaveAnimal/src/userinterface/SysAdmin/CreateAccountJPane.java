@@ -5,6 +5,7 @@
  */
 package userinterface.SysAdmin;
 
+import Business.Customer.Customer;
 import Business.Department.Department;
 import Business.EcoSystem;
 import Business.Employee.Employee;
@@ -18,7 +19,9 @@ import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
+import com.db4o.cs.internal.messages.Message;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.JComboBox;
@@ -42,7 +45,6 @@ public class CreateAccountJPane extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.system=system;
         initrolebox();
-        
         initnetworkbox();
     }
   private void initrolebox() {   
@@ -106,6 +108,7 @@ public class CreateAccountJPane extends javax.swing.JPanel {
         confirmjButton = new javax.swing.JButton();
         usernamejTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(passwordjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 381, 96, -1));
@@ -186,57 +189,72 @@ public class CreateAccountJPane extends javax.swing.JPanel {
             }
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 30, -1, -1));
+
+        jLabel12.setText("If you create a customer please ignore the employee information");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        userProcessContainer.remove(this);
+     
+         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageUserJPanel dwjp = (ManageUserJPanel) component;
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void confirmjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmjButtonActionPerformed
         // TODO add your handling code here:
-        String Username=usernamejTextField.getText();
-        String password=passwordjTextField.getText();
-        String Employeename=EmlpoyeeNamejTextField.getText();
-        int age=Integer.parseInt(AgejTextField.getText());
-        String gender=genderjTextField.getText() ;
-        int id =getUUID();
+        if (CheckUserIormationBlackText()) {
+           String roleType= rolejComboBox.getSelectedItem().toString();
+           String Username=usernamejTextField.getText();
+           String password=passwordjTextField.getText();
+           String Employeename=null;
+           int age=0;
+           String gender=null;
+           int id =getUUID();
         
-        Network net=system.getNetworkdirectory().findNetWork(networkjComboBox.getSelectedItem().toString());
-        Enterprise ent=system.getEnterpriseDirectory().findEnterprise(enterprisejComboBox.getSelectedItem().toString());
-        
-        String roleType= rolejComboBox.getSelectedItem().toString();
-        String departmentType=departmentjComboBox.getSelectedItem().toString();
-        
-//         Employee newEmployee=system.getEmployeeDirectory().createEmployee(Employeename, Department.DepartmentType.SystemOrg);     
-          newEmployee=system.getEmployeeDirectory().createEmployee(Employeename);
-          newEmployee.setAge(age);
-          newEmployee.setSex(gender);
-          newEmployee.setId(id);
-       
-          
-          if (roleType.equals(Role.RoleType.Customer.getValue())) {
-             JOptionPane.showMessageDialog(null, "Create successfully");
-              UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new CustomerRole("Customer",ent.getEnterpriseID() )); 
-              account.setId(id);
-          }if (roleType.equals(Role.RoleType.Doctor.getValue())) {
+        if (!roleType.equals(Role.RoleType.Customer.getValue())) {
+            if (CheckEmpIformationBlackText()) {
+             Employeename=EmlpoyeeNamejTextField.getText();
+             age=Integer.parseInt(AgejTextField.getText());
+             gender=genderjTextField.getText() ;system.getCustomerDirectory().addRestaurant(Username);
+             String department=departmentjComboBox.getSelectedItem().toString();       
+                        
+            Network net=system.getNetworkdirectory().findNetWork(networkjComboBox.getSelectedItem().toString());
+            Enterprise ent=net.getEnterpriseDirectory().findEnterprise(enterprisejComboBox.getSelectedItem().toString());
+            Department deo=ent.getDepartmentDirectory().findDepartment(department);
+            newEmployee=deo.getEmployeeDirectory().createEmployee(Employeename);
+            newEmployee.setAge(age);
+            newEmployee.setSex(gender);
+            newEmployee.setId(id);
+ 
+          if (roleType.equals(Role.RoleType.Doctor.getValue())) {         
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new DoctorRole("Doctor",ent.getEnterpriseID() )); 
-             account.setId(id);
-          }if (roleType.equals(Role.RoleType.HospitalAdmin.getValue())) {
+             account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }else if (roleType.equals(Role.RoleType.HospitalAdmin.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new HospitalAdminRole("HospitalAdmin",ent.getEnterpriseID() )); 
-            account.setId(id);
-          }if (roleType.equals(Role.RoleType.OrganizationAdmin.getValue())) {
+            account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }else if (roleType.equals(Role.RoleType.OrganizationAdmin.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new OrganizationAdminRole("OrganizationAdmin",ent.getEnterpriseID() )); 
-            account.setId(id);
-          }if (roleType.equals(Role.RoleType.Worker.getValue())) {
+            account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }else if (roleType.equals(Role.RoleType.Worker.getValue())) {
              UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new WorkerRole("Worker",ent.getEnterpriseID() )); 
-             account.setId(id);
-          }if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
-             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin",ent.getEnterpriseID() )); 
-             account.setId(id);
-          }
-          
+             account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }else if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
+             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin" )); 
+             account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }   
+            }              
+        }else{           
+            UserAccount account= system.getUserAccountDirectory().createCusUserAccount(Username, password, new CustomerRole("Customer")); 
+            account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+        }
+       
+        }      
     }//GEN-LAST:event_confirmjButtonActionPerformed
 
     private void enterprisejComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterprisejComboBoxActionPerformed
@@ -272,6 +290,29 @@ public class CreateAccountJPane extends javax.swing.JPanel {
         num=Math.abs(num);
         return  num;      
     }
+ public boolean CheckEmpIformationBlackText(){
+     if (EmlpoyeeNamejTextField.getText().isEmpty()) {
+         JOptionPane.showMessageDialog(null, "Please add Employee Name","Input warning", JOptionPane.ERROR_MESSAGE);
+         return false;
+     } else  if (AgejTextField.getText().isEmpty()) {
+         JOptionPane.showMessageDialog(null, "Please add age","Input warning", JOptionPane.ERROR_MESSAGE);
+         return false;
+     } else  if (genderjTextField.getText().isEmpty()) {
+         JOptionPane.showMessageDialog(null, "Please add gender","Input warning", JOptionPane.ERROR_MESSAGE);
+         return false;
+     }
+        return true;
+ }
+ public boolean CheckUserIormationBlackText(){
+        if (usernamejTextField.getText().isEmpty()) {
+         JOptionPane.showMessageDialog(null, "Please add User Name","Input warning", JOptionPane.ERROR_MESSAGE);
+         return false;
+     } else  if (passwordjTextField.getText().isEmpty()) {
+         JOptionPane.showMessageDialog(null, "Please add Password","Input warning", JOptionPane.ERROR_MESSAGE);
+         return false;
+     }
+        return true;
+ }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AgejTextField;
@@ -284,6 +325,7 @@ public class CreateAccountJPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

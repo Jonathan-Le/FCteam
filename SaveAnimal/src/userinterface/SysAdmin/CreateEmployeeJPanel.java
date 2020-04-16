@@ -20,6 +20,7 @@ import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
 import static com.sun.xml.internal.ws.util.JAXWSUtils.getUUID;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -56,7 +57,6 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
     }
       private void initrolebox() {   
             rolejComboBox.removeAllItems(); 
-            rolejComboBox.addItem(Role.RoleType.Customer.getValue());
             rolejComboBox.addItem(Role.RoleType.Doctor.getValue());
             rolejComboBox.addItem(Role.RoleType.HospitalAdmin.getValue());
             rolejComboBox.addItem(Role.RoleType.OrganizationAdmin.getValue());
@@ -185,7 +185,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
 
         if (roleType.equals(Role.RoleType.Customer.getValue())) {
             JOptionPane.showMessageDialog(null, "Create successfully");
-            UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new CustomerRole("Customer",ent.getEnterpriseID() ));
+            UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new CustomerRole("Customer"));
             account.setId(id);
         }if (roleType.equals(Role.RoleType.Doctor.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new DoctorRole("Doctor",ent.getEnterpriseID() ));
@@ -200,14 +200,18 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new WorkerRole("Worker",ent.getEnterpriseID() ));
             account.setId(id);
         }if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
-            UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin",ent.getEnterpriseID() ));
+            UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin"));
             account.setId(id);
         }
 
     }//GEN-LAST:event_confirmjButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        userProcessContainer.remove(this);
+               userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageEmployeeJPanel dwjp = (ManageEmployeeJPanel) component;
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed

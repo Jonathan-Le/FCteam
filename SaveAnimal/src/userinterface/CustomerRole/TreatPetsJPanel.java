@@ -7,6 +7,7 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class TreatPetsJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);                 
             
-            ArrayList<WorkRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
+            ArrayList<AdoptionRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];

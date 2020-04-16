@@ -11,6 +11,7 @@ import Business.Enterprise.EnterpriseDirectory;
 import Business.Organization;
 import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -48,7 +49,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);                 
             
-            ArrayList<WorkRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
+            ArrayList<AdoptionRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];
@@ -227,12 +228,14 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         if (row<0) {
             JOptionPane.showMessageDialog(null,"Selev a row");
             return;
+        }else{
+             int ID = Integer.valueOf(petjTable.getValueAt(row, 0).toString());       
+            Pet pet =(Pet)org.getPetDirectory().findPet(ID);       
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new fillinformationJPanel(userProcessContainer, account, business,pet,org));
+            layout.next(userProcessContainer);   
         }
-        int ID = Integer.valueOf(petjTable.getValueAt(row, 0).toString());       
-        Pet pet =(Pet)org.getPetDirectory().findPet(ID);       
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new fillinformationJPanel(userProcessContainer, account, business,pet,org));
-        layout.next(userProcessContainer);   
+       
     }//GEN-LAST:event_sendjButtonActionPerformed
 
     private void choosejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosejButtonActionPerformed

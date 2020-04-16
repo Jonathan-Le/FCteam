@@ -9,6 +9,7 @@ import Business.Pet.Pet;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -86,6 +87,15 @@ public class UserAccount {
         return username;
     }
     
-    
+    public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+     
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
     
 }
