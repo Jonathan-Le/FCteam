@@ -6,7 +6,6 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
-import java.util.UUID;
 
 /**
  *
@@ -16,26 +15,15 @@ public class Network {
      private String name;
     private int id;
     private EnterpriseDirectory enterpriseDirectory;
-    
 
-//    private static int count = 1;
+    private static int count = 1;
 
     public Network(String name) {
         this.name = name;
-        this.id = getUUID();
+        this.id = count++;
         enterpriseDirectory = new EnterpriseDirectory();
-        
     }
-    public int getUUID(){
-        String id = null;
-        UUID uuid = UUID.randomUUID();
-        id=uuid.toString();
-        
-        id=id.replace("-", "");
-        int num= id.hashCode();
-        num=Math.abs(num);
-        return  num;      
-    }
+
     public String getName() {
         return name;
     }
@@ -60,6 +48,12 @@ public class Network {
         this.enterpriseDirectory = enterpriseDirectory;
     }
 
-  
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Network.count = count;
+    }
     
 }

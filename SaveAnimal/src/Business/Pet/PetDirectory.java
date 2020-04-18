@@ -42,8 +42,8 @@ public class PetDirectory {
         return pet;
     }
     
-    public void CreatePet(String name,String species, String Age){   
-        petlist.add(new Pet( name, species,  Age));
+    public void CreatePet(String species, String Age){   
+        petlist.add(new Pet( species,  Age));
     }
     
 }

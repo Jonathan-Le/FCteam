@@ -6,58 +6,64 @@
 package Business.Department;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
-import java.util.UUID;
+import java.util.ArrayList;
 
 /**
  *
  * @author junyaoli
  */
-public class Department {
-     private int organizationID;
+
+public abstract class Department {
+    
+    private int organizationID;
     private String name;
+    private DepartmentType DepartmentType;
     private String description;
     private int enterpriseID;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private WorkQueue workQueue;
+    private static int counter = 0;
     
 
-//    public enum DepartmentType {
-//        HospitalAdminOrg("HospitalAdminOrg"), 
-//        OrganizationAdminOrg("OrganizationAdminOrg"),
-//        SystemOrg("SystemOrg"),
-//        DoctorOrg("DoctorOrg"),
-//        CustomerOrg("CustomerOrg"),
-//        WorkerOrg("WorkerOrg");
-//     
-//        private String value;
-//
-//        private DepartmentType(String value) {
-//            this.value = value;
-//        }
-//        public String getValue() {
-//            return value;
-//        }
-//    }  
-    public Department(String name) {
+    public enum DepartmentType {
+        HospitalAdminOrg("HospitalAdmin Org"), 
+        OrganizationAdminOrg("OrganizationAdmin Org"),
+        SystemOrg("System Org"),
+        DoctorOrg("Doctor Org"),
+        WorkerOrg("Worker Org");
+        
+//        PurchasingAgent("PurchasingAgent Org"), 
+//        StoreOrg("StoreManage Org"),
+//        OrderOrg("Order Org"), 
+//        FinancialOrg("Financial Org"),
+//        GenerateOrg("Generate Org") ;
+        
+        private String value;
+
+        private DepartmentType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+    
+    public Department(String name, Department.DepartmentType DepartmentType, int enterpriseID) {
         this.name = name;
-        this.enterpriseID = getUUID();
+        this.DepartmentType = DepartmentType;
+        this.enterpriseID = enterpriseID;
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         workQueue = new WorkQueue();
+        organizationID = ++counter;
     }
- public int getUUID(){
-        String id = null;
-        UUID uuid = UUID.randomUUID();
-        id=uuid.toString();
-        
-        id=id.replace("-", "");
-        int num= id.hashCode();
-        num=Math.abs(num);
-        return  num;      
-    }
+    
+    public abstract ArrayList<Role> getSupportedRole();
 
     public int getOrganizationID() {
         return organizationID;
@@ -73,7 +79,15 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
-    } 
+    }
+
+    public DepartmentType getDepartmentType() {
+        return DepartmentType;
+    }
+
+    public void setDepartmentType(DepartmentType DepartmentType) {
+        this.DepartmentType = DepartmentType;
+    }
 
     public String getDescription() {
         return description;
@@ -115,6 +129,12 @@ public class Department {
         this.workQueue = workQueue;
     }
 
+    public static int getCounter() {
+        return counter;
+    }
 
+    public static void setCounter(int counter) {
+        Department.counter = counter;
+    }
 
 }

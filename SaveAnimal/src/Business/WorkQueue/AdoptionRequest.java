@@ -5,8 +5,6 @@
  */
 package Business.WorkQueue;
 
-import Business.Pet.Pet;
-
 /**
  *
  * @author junyaoli
@@ -14,21 +12,11 @@ import Business.Pet.Pet;
 public class AdoptionRequest extends WorkRequest {
     private String selfeDes;
     private int budget;
-    private Pet pet;
 
     
-    public AdoptionRequest(String selfeDes, int budget,Pet pet) {
+    public AdoptionRequest(String selfeDes, int budget) {
         this.selfeDes = selfeDes;
         this.budget = budget;
-        this.pet=pet;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
     }
 
     public String getSelfeDes() {

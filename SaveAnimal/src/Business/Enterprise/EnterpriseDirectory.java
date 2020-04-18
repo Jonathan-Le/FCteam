@@ -1,6 +1,8 @@
 package Business.Enterprise;
 
 
+import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
+import Business.Enterprise.hospital.Hospital;
 import com.db4o.cs.internal.messages.Message;
 import java.awt.TrayIcon;
 import java.util.ArrayList;
@@ -26,11 +28,17 @@ public class EnterpriseDirectory {
         enterpriseList = new ArrayList<Enterprise>();
     }
 
-    public Enterprise addEnterprise(String name) {
-        
-         Enterprise enterprise = new Enterprise(name) ;          
-         enterpriseList.add(enterprise);
-         return enterprise;
+    public Enterprise addEnterprise(String name, Enterprise.EnterpriseType type) {
+        Enterprise enterprise = null;
+        if (type == Enterprise.EnterpriseType.hospital) {
+            enterprise = new Hospital(name);          
+            enterpriseList.add(enterprise);
+        }
+        if (type == Enterprise.EnterpriseType.RescuOrganization) {
+            enterprise = new RescueAnimalOrganization(name);
+            enterpriseList.add(enterprise);
+        }
+        return enterprise;
     }
     
     public Enterprise findEnterprise(String name){
