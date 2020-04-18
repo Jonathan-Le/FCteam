@@ -27,12 +27,11 @@ public class PetDirectory {
         this.petlist = petlist;
     }
     
-    public Pet findPet(int ID) {
+    public Pet findPet(String ID) {
        for (Pet pet : petlist) {
-            if (pet.getID()==ID) {
+            if (pet.getName()==ID) {
                 return pet;
             }
-            JOptionPane.showMessageDialog(null, "No enterprise");
         }
         return null;
     }
@@ -42,8 +41,8 @@ public class PetDirectory {
         return pet;
     }
     
-    public void CreatePet(String species, String Age){   
-        petlist.add(new Pet( species,  Age));
+    public void CreatePet(String name,String species, String Age){   
+        petlist.add(new Pet( name, species,  Age));
     }
     
 }

@@ -5,6 +5,10 @@
  */
 package Business.Customer;
 
+import Business.Pet.Pet;
+import java.util.ArrayList;
+import java.util.UUID;
+
 /**
  *
  * @author harold
@@ -12,6 +16,27 @@ package Business.Customer;
 public class Customer {
     int ID;
     String name;
+    ArrayList<Pet> PetList;
+
+    public Customer(String name) {
+        PetList=new ArrayList();
+        this.name=name;
+        ID=getUUID();
+    }
+    public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
+    
+    public ArrayList<Pet> getPetList() {
+        return PetList;
+    }
 
     public int getID() {
         return ID;

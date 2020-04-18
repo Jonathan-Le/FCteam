@@ -6,8 +6,18 @@
 package userinterface.HospitalRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdoptionRequest;
+import Business.WorkQueue.EuthanasiaRequest;
+import Business.WorkQueue.ExaminationRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,12 +31,58 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;
+    private  Enterprise userEnterprise;
     
     public DoctorJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.business=business;
+        
+        userEnterprise = business.getEnterpriseDirectory().findEnterpriseID(account.getRole().getEnterpriseID());
+        
+        populateEuTable();
+        populateExaminationTable();
+    }
+public void populateEuTable(){
+
+            DefaultTableModel dtm = (DefaultTableModel) euRequestjTable.getModel();
+            dtm.setRowCount(0);  
+            ArrayList<EuthanasiaRequest> worklist =userEnterprise.getWorkQueue().getEutRequestList();          
+            if (worklist != null){               
+                for(WorkRequest apl : worklist){
+                    Object[] row = new Object[8];
+                    row[0]= apl.getID();
+                    row[1]= apl.getTitle();
+                    row[2]= apl.getSender();
+                    row[3]=apl.getReceiver();
+                    row[4]=apl.getRequestDate();
+                    row[5]=apl.getResolveDate();
+                    row[6]=apl.getStatus();
+                    row[7]=apl.getResult();
+                    dtm.addRow(row);
+                }
+            }    
+    } 
+public void populateExaminationTable(){
+
+            DefaultTableModel dtm = (DefaultTableModel) examinationjTable.getModel();
+            dtm.setRowCount(0);  
+            ArrayList<ExaminationRequest> worklist =userEnterprise.getWorkQueue().getExaminationRequestList();          
+            if (worklist != null){               
+                for(WorkRequest apl : worklist){
+                    Object[] row = new Object[8];
+                    row[0]= apl.getID();
+                    row[1]= apl.getTitle();
+                    row[2]= apl.getSender();
+                    row[3]=apl.getReceiver();
+                    row[4]=apl.getRequestDate();
+                    row[5]=apl.getResolveDate();
+                    row[6]=apl.getStatus();
+                    row[7]=apl.getResult();
+                    dtm.addRow(row);
+                }
+            }    
     }
 
     /**
@@ -39,134 +95,292 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        examjButton = new javax.swing.JButton();
+        eujButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        RefreshjButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        examinationjTable = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        euRequestjTable = new javax.swing.JTable();
+        delayjButton = new javax.swing.JButton();
+        canceljButton = new javax.swing.JButton();
+        deletejButton = new javax.swing.JButton();
+        euDelayjButton = new javax.swing.JButton();
+        euCanceljButton = new javax.swing.JButton();
+        euDeletejButton = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Doctor Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 21, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        examjButton.setText("View");
+        examjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                examjButtonActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        add(examjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
-        jButton1.setText("Confirm");
-
-        jLabel2.setText("Result");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        eujButton.setText("View");
+        eujButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eujButtonActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        });
+        add(eujButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
 
-        jButton2.setText("Confirm");
-
-        jLabel3.setText("Result");
-
-        jLabel4.setText("Diagnosis List");
+        jLabel4.setText("Medical Examination List");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 53, -1, -1));
 
         jLabel5.setText("Euthanasia List");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 298, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(jButton1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(56, 56, 56)
-                                    .addComponent(jButton2))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel1)))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
-        );
+        RefreshjButton.setText("Refresh");
+        RefreshjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshjButtonActionPerformed(evt);
+            }
+        });
+        add(RefreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 23, -1, -1));
+
+        examinationjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Ttile", "Sender", "Reciever", "SendDate", "ResolveDate", "Status", "Result"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(examinationjTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 75, 631, 164));
+
+        euRequestjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Ttile", "Sender", "Reciever", "SendDate", "ResolveDate", "Status", "Result"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(euRequestjTable);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 320, 631, 164));
+
+        delayjButton.setText("Delay");
+        delayjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delayjButtonActionPerformed(evt);
+            }
+        });
+        add(delayjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
+
+        canceljButton.setText("Cancel");
+        canceljButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canceljButtonActionPerformed(evt);
+            }
+        });
+        add(canceljButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
+
+        deletejButton.setText("Delete");
+        deletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletejButtonActionPerformed(evt);
+            }
+        });
+        add(deletejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, -1));
+
+        euDelayjButton.setText("Delay");
+        euDelayjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                euDelayjButtonActionPerformed(evt);
+            }
+        });
+        add(euDelayjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+
+        euCanceljButton.setText("Cancel");
+        euCanceljButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                euCanceljButtonActionPerformed(evt);
+            }
+        });
+        add(euCanceljButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, -1, -1));
+
+        euDeletejButton.setText("Delete");
+        euDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                euDeletejButtonActionPerformed(evt);
+            }
+        });
+        add(euDeletejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshjButtonActionPerformed
+        // TODO add your handling code here:
+        populateEuTable();
+        populateExaminationTable();
+    }//GEN-LAST:event_RefreshjButtonActionPerformed
+
+    private void examjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examjButtonActionPerformed
+        // TODO add your handling code here:
+        int row = examinationjTable.getSelectedRow();
+         if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int id=Integer.valueOf(examinationjTable.getValueAt(row, 0).toString());
+            ExaminationRequest request =(ExaminationRequest) userEnterprise.getWorkQueue().findRequestbyID(id);         
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new ViewExaminationJPanel(userProcessContainer,account,business,request));
+            layout.next(userProcessContainer);  
+        }
+        
+    }//GEN-LAST:event_examjButtonActionPerformed
+
+    private void eujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eujButtonActionPerformed
+        // TODO add your handling code here:
+        int row = euRequestjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            String id=euRequestjTable.getValueAt(row, 1).toString();
+            EuthanasiaRequest request =(EuthanasiaRequest) userEnterprise.getWorkQueue().findRequestbyname(id);
+            
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new ViewEuApplicationJPanel(userProcessContainer,account,business,request));
+            layout.next(userProcessContainer);  
+        }
+       
+    }//GEN-LAST:event_eujButtonActionPerformed
+
+    private void delayjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delayjButtonActionPerformed
+        // TODO add your handling code here:
+        int row = examinationjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(examinationjTable.getValueAt(row,0).toString());  
+            String requestEnterprise= (examinationjTable.getValueAt(row,3).toString());   
+            ExaminationRequest request =(ExaminationRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+          
+            request.setStatus("Delayed");
+            populateExaminationTable();
+        }   
+    }//GEN-LAST:event_delayjButtonActionPerformed
+
+    private void canceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canceljButtonActionPerformed
+        // TODO add your handling code here:
+         int row = examinationjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(examinationjTable.getValueAt(row,0).toString());   
+            ExaminationRequest request =(ExaminationRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+          
+            request.setStatus("Canceled");
+            request.setResolveDate(new Date());
+            populateExaminationTable();
+        }    
+    }//GEN-LAST:event_canceljButtonActionPerformed
+
+    private void deletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletejButtonActionPerformed
+        // TODO add your handling code here:
+        int row = examinationjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(examinationjTable.getValueAt(row,0).toString());  
+            ExaminationRequest request =(ExaminationRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+            userEnterprise.getWorkQueue().getExaminationRequestList().remove(request);
+            populateExaminationTable();
+        }    
+    }//GEN-LAST:event_deletejButtonActionPerformed
+
+    private void euDelayjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_euDelayjButtonActionPerformed
+        // TODO add your handling code here:
+         int row = euRequestjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(euRequestjTable.getValueAt(row,0).toString());  
+            EuthanasiaRequest request =(EuthanasiaRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+            userEnterprise.getWorkQueue().getExaminationRequestList().remove(request);
+            populateExaminationTable();
+        }   
+    }//GEN-LAST:event_euDelayjButtonActionPerformed
+
+    private void euCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_euCanceljButtonActionPerformed
+        // TODO add your handling code here:
+         int row = euRequestjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(euRequestjTable.getValueAt(row,0).toString());   
+            EuthanasiaRequest request =(EuthanasiaRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+          
+            request.setStatus("Canceled");
+            request.setResolveDate(new Date());
+            populateExaminationTable();
+        }    
+    }//GEN-LAST:event_euCanceljButtonActionPerformed
+
+    private void euDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_euDeletejButtonActionPerformed
+        // TODO add your handling code here:
+         int row = euRequestjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }else{
+            int requestID= Integer.valueOf(euRequestjTable.getValueAt(row,0).toString());  
+            EuthanasiaRequest request =(EuthanasiaRequest) userEnterprise.getWorkQueue().findRequestbyID(requestID);
+          
+            request.setStatus("Delayed");
+            populateExaminationTable();
+        }   
+    }//GEN-LAST:event_euDeletejButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton RefreshjButton;
+    private javax.swing.JButton canceljButton;
+    private javax.swing.JButton delayjButton;
+    private javax.swing.JButton deletejButton;
+    private javax.swing.JButton euCanceljButton;
+    private javax.swing.JButton euDelayjButton;
+    private javax.swing.JButton euDeletejButton;
+    private javax.swing.JTable euRequestjTable;
+    private javax.swing.JButton eujButton;
+    private javax.swing.JTable examinationjTable;
+    private javax.swing.JButton examjButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

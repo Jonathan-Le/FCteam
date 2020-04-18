@@ -15,8 +15,8 @@ import javax.swing.JPanel;
  * @author raunak
  */
 public class SystemAdminRole extends Role{
-     public SystemAdminRole(String roleType,  int enterpriseID) {
-        super(roleType,  enterpriseID);
+     public SystemAdminRole(String roleType) {
+        super(roleType);
     }
   
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system) {

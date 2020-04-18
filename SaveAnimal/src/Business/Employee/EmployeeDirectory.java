@@ -20,13 +20,23 @@ public class EmployeeDirectory {
         employeeList = new ArrayList();
         
     }
+    
+    public Employee findEmployee(String name){
+         
+        for (Employee network1 : employeeList) {
+            if (network1.getName().equals(name)) {
+                return network1;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<Employee> getEmployeeList() {
         return employeeList;
     }
     
-    public Employee createEmployee(String name, Department.DepartmentType dep){
-        Employee employee = new Employee(name,dep);
+    public Employee createEmployee(String name){
+        Employee employee = new Employee(name);
         employeeList.add(employee);
         return employee;
     }

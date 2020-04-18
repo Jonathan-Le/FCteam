@@ -7,12 +7,11 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Enterprise.EnterpriseDirectory;
-import Business.Enterprise.RescueAnimalOrganization.RescueAnimalOrganization;
 import Business.Organization;
 import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -34,7 +33,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;
-    RescueAnimalOrganization org;
+    private Enterprise org;
     public PetadoptionJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
@@ -50,7 +49,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);                 
             
-            ArrayList<WorkRequest> worklist = account.getWorkQueue().getWorkRequestList();          
+            ArrayList<AdoptionRequest> worklist = account.getWorkQueue().getAdoptionkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[7];
@@ -73,7 +72,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             ArrayList<Enterprise> entlist = business.getEnterpriseDirectory().getEnterpriseList();          
             if (entlist != null){               
                 for(Enterprise ent : entlist){
-                    if (ent.getEnterpriseType().equals(EnterpriseType.RescuOrganization)) {
+                    if (ent.getEnterpriseType().equals(Enterprise.EnterpriseType.RescuOrganization)) {
                     Object[] row = new Object[2];
                     row[0]=ent.getEnterpriseID();
                     row[1]=ent.getEnterpriseName();
@@ -83,17 +82,18 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 }
             }    
     } 
-    public void populatePetTable(RescueAnimalOrganization org){
+    public void populatePetTable(Enterprise org){
 
             DefaultTableModel dtm = (DefaultTableModel) petjTable.getModel();
             dtm.setRowCount(0);           
             ArrayList<Pet> petlist = org.getPetDirectory().getPetlist();           
             if (petlist != null){                 
                 for(Pet pet : petlist){
-                    Object[] row = new Object[3];
+                    Object[] row = new Object[4];
                     row[0] = pet.getID();
-                    row[1]=pet.getSpecies();
-                    row[2]= pet.getAge();
+                    row[1] = pet.getName();
+                    row[2]=pet.getSpecies();
+                    row[3]= pet.getAge();
                     dtm.addRow(row);
                 }
             }     
@@ -119,6 +119,9 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         applicationjTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        ViewjButton = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orgjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,8 +136,11 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orgjTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 349, 289, 106));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Rescue Organiztion List");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 318, 243, -1));
 
         sendjButton.setText("Send Application");
         sendjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +148,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 sendjButtonActionPerformed(evt);
             }
         });
+        add(sendjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,25 +156,34 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 50, -1, -1));
 
         petjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Species", "Age"
+                "ID", "Name", "Species", "Age"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(petjTable);
-        if (petjTable.getColumnModel().getColumnCount() > 0) {
-            petjTable.getColumnModel().getColumn(2).setHeaderValue("Age");
-        }
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 349, 285, 106));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel2.setText("Pet List");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 318, -1, -1));
 
         choosejButton.setText("Choose");
         choosejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +191,7 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
                 choosejButtonActionPerformed(evt);
             }
         });
+        add(choosejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 473, -1, -1));
 
         applicationjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,72 +214,19 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(applicationjTable);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 124, 631, 164));
+
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel3.setText("My Application");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 81, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(choosejButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(145, 145, 145)
-                                                .addComponent(sendjButton))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(162, 162, 162)
-                                                .addComponent(jLabel2)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel3)))
-                .addContainerGap(130, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(backJButton)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(choosejButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sendjButton)))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
+        ViewjButton.setText("View Pet");
+        ViewjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewjButtonActionPerformed(evt);
+            }
+        });
+        add(ViewjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -280,13 +244,13 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Selev a row");
             return;
         }else{
-            int ID = Integer.valueOf(petjTable.getValueAt(row, 0).toString());       
-        Pet pet =(Pet)org.getPetDirectory().findPet(ID);       
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new fillinformationJPanel(userProcessContainer, account, business,pet,org));
-        layout.next(userProcessContainer); 
+             String ID = petjTable.getValueAt(row, 1).toString();       
+            Pet pet =(Pet)org.getPetDirectory().findPet(ID);       
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new fillinformationJPanel(userProcessContainer, account, business,pet,org));
+            layout.next(userProcessContainer);   
         }
-          
+       
     }//GEN-LAST:event_sendjButtonActionPerformed
 
     private void choosejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosejButtonActionPerformed
@@ -295,15 +259,36 @@ public class PetadoptionJPanel extends javax.swing.JPanel {
         if (row<0) {
             JOptionPane.showMessageDialog(null,"Selev a row");
             return;
-        }else{
+        }else {
             String Name = (String)orgjTable.getValueAt(row, 1);
-        org =(RescueAnimalOrganization)business.getEnterpriseDirectory().findEnterprise(Name);
-        populatePetTable(org);
+            org =business.getEnterpriseDirectory().findEnterprise(Name);
+            populatePetTable(org);
         }
+        
+
     }//GEN-LAST:event_choosejButtonActionPerformed
+
+    private void ViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewjButtonActionPerformed
+        // TODO add your handling code here:
+        int row = petjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null,"Selev a row");
+            return;
+        }else {
+            String name = petjTable.getValueAt(row,1).toString();
+            Pet pet = org.getPetDirectory().findPet(name);
+           CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new ViewPetJPanel(userProcessContainer,pet));
+            layout.next(userProcessContainer);   
+        }
+        
+        
+                
+    }//GEN-LAST:event_ViewjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ViewjButton;
     private javax.swing.JTable applicationjTable;
     private javax.swing.JButton backJButton;
     private javax.swing.JButton choosejButton;

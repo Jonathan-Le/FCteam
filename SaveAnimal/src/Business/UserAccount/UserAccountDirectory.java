@@ -7,6 +7,7 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -38,7 +39,13 @@ public class UserAccountDirectory {
             }
         return null;
     }
-    
+    public UserAccount findUserbyID(int ID){
+        for (UserAccount ua : userAccountList)
+            if (ua.getId()==(ID)){
+                return ua;
+            }
+        return null;
+    }
     public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
@@ -49,11 +56,33 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
+    public UserAccount createCusUserAccount(String username, String password, Role role){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setRole(role);
+        userAccount.setId(getUUID());
+        userAccountList.add(userAccount);
+        return userAccount;
+    }
+    
+    
     public boolean checkIfUsernameIsUnique(String username){
         for (UserAccount ua : userAccountList){
             if (ua.getUsername().equals(username))
                 return false;
         }
         return true;
+    }
+    
+      public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+     
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
     }
 }

@@ -11,6 +11,7 @@ import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -150,6 +151,7 @@ public class ReviewApplicationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String result = resultjTextField.getText();
         request.setResult(result);
+        request.setResolveDate(new Date());
         JOptionPane.showMessageDialog(null, "Confirm successfully");
     }//GEN-LAST:event_ConfirmjButtonActionPerformed
 

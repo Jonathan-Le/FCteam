@@ -5,6 +5,7 @@
  */
 package userinterface.CustomerRole;
 
+import userinterface.OrganizationRole.ApplyExaminationJPanel;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -41,7 +42,7 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         petAdoptionjButton = new javax.swing.JButton();
-        treatPetsjButton = new javax.swing.JButton();
+        volunteerjButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -58,14 +59,14 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
         });
         add(petAdoptionjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 278, -1));
 
-        treatPetsjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        treatPetsjButton.setText("Treat pets");
-        treatPetsjButton.addActionListener(new java.awt.event.ActionListener() {
+        volunteerjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        volunteerjButton.setText("To be a volunteer");
+        volunteerjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                treatPetsjButtonActionPerformed(evt);
+                volunteerjButtonActionPerformed(evt);
             }
         });
-        add(treatPetsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 244, 278, -1));
+        add(volunteerjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 244, 278, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void petAdoptionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_petAdoptionjButtonActionPerformed
@@ -76,18 +77,18 @@ public class CustomerManageJPanel extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_petAdoptionjButtonActionPerformed
 
-    private void treatPetsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treatPetsjButtonActionPerformed
+    private void volunteerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volunteerjButtonActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new TreatPetsJPanel(userProcessContainer, account, business));
-        layout.next(userProcessContainer);    
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        userProcessContainer.add(new ApplyExaminationJPanel(userProcessContainer, account, business));
+//        layout.next(userProcessContainer);    
                 
-    }//GEN-LAST:event_treatPetsjButtonActionPerformed
+    }//GEN-LAST:event_volunteerjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton petAdoptionjButton;
-    private javax.swing.JButton treatPetsjButton;
+    private javax.swing.JButton volunteerjButton;
     // End of variables declaration//GEN-END:variables
 }
