@@ -8,7 +8,6 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.CustomerRole.CustomerManageJPanel;
 import userinterface.Organization.OrganizationManagementJPanel;
 import userinterface.OrganizationRole.OrganizationWorkerJPanel;
 

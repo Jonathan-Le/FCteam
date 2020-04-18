@@ -19,11 +19,10 @@ public class CustomerDirectory {
         CustomerDirectory= new ArrayList();
     }
     
-    public Customer addRestaurant(Customer customer) {
-        Customer cus = new Customer();
-        cus=customer;
+    public Customer addRestaurant(String name) {
+        Customer cus = new Customer(name);      
         CustomerDirectory.add(cus);
-        return customer;
+        return cus;
     }   
     public ArrayList<Customer> getRestaurantDirectory() {
         return CustomerDirectory;

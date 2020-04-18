@@ -1,33 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Business.Enterprise;
 
-//import business.employee.EmployeeDirectory;
-//import business.organization.OrganizationDirectory;
-//import business.organization.Organization;
-//import business.useraccount.UserAccountDirectory;
-import Business.Employee.EmployeeDirectory;
-import Business.UserAccount.UserAccountDirectory;
-import Business.Department.Department;
 import Business.Department.DepartmentDirectory;
+import Business.Employee.EmployeeDirectory;
+import Business.Pet.Pet;
+import Business.Pet.PetDirectory;
+import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
- * @author lhm
+ * @author junyaoli
  */
-public abstract class Enterprise {
+public class Enterprise {
 
     private String enterpriseName;
     private int enterpriseID;
     private UserAccountDirectory userAccountDirectory;
-    private EmployeeDirectory employeeDirectory;
+//    private EmployeeDirectory employeeDirectory;
     private DepartmentDirectory DepartmentDirectory;
     private EnterpriseType enterpriseType;
-    private WorkQueue adoptionQueue;
-    private static int counter = 0;
+    private WorkQueue WorkQueue;
+    private PetDirectory petDirectory;
+
 
     public enum EnterpriseType {
-        RescuOrganization("RescuOrganization Enterprise"), hospital("hospital Enterprise");
+        RescuOrganization("RescuOrganization Enterprise"),
+        hospital("hospital Enterprise");
         private String value;
         private EnterpriseType(String value) {
             this.value = value;
@@ -36,23 +41,42 @@ public abstract class Enterprise {
             return value;
         }
     }
+    
 
-    public Enterprise(String name, EnterpriseType type) {
+    public Enterprise(String name) {
         this.enterpriseName = name;
-        this.enterpriseType = type;
-        this.enterpriseID = ++counter;
         DepartmentDirectory = new DepartmentDirectory();
         userAccountDirectory = new UserAccountDirectory();
-        employeeDirectory = new EmployeeDirectory();
-        this.adoptionQueue = new WorkQueue();
+//        employeeDirectory = new EmployeeDirectory();
+        this.WorkQueue = new WorkQueue();
+        petDirectory=new PetDirectory();
+        enterpriseID=getUUID();
     }
 
-    public WorkQueue getAdoptionQueue() {
-        return adoptionQueue;
+    public PetDirectory getPetDirectory() {
+        return petDirectory;
     }
 
-    public void setAdoptionQueue(WorkQueue adoptionQueue) {
-        this.adoptionQueue = adoptionQueue;
+    public void setPetDirectory(PetDirectory petDirectory) {
+        this.petDirectory = petDirectory;
+    }
+  
+    public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
+    public WorkQueue getWorkQueue() {
+        return WorkQueue;
+    }
+
+    public void setWorkQueue(WorkQueue WorkQueue) {
+        this.WorkQueue = WorkQueue;
     }
 
     public String getEnterpriseName() {
@@ -79,13 +103,13 @@ public abstract class Enterprise {
         this.userAccountDirectory = userAccountDirectory;
     }
 
-    public EmployeeDirectory getEmployeeDirectory() {
-        return employeeDirectory;
-    }
-
-    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
-        this.employeeDirectory = employeeDirectory;
-    }
+//    public EmployeeDirectory getEmployeeDirectory() {
+//        return employeeDirectory;
+//    }
+//
+//    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
+//        this.employeeDirectory = employeeDirectory;
+//    }
 
     public DepartmentDirectory getDepartmentDirectory() {
         return DepartmentDirectory;
@@ -103,11 +127,13 @@ public abstract class Enterprise {
         this.enterpriseType = enterpriseType;
     }
     
-    public abstract ArrayList<Department.DepartmentType> getSupportedOrganization();
+//    public abstract ArrayList<Department.DepartmentType> getSupportedOrganization();
 
     @Override
     public String toString(){
         return this.enterpriseName + " (" + this.enterpriseType + ")";
     }
+
+
 
 }

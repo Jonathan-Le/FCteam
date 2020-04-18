@@ -5,6 +5,9 @@
  */
 package Business.Pet;
 
+import java.util.UUID;
+import java.util.jar.Attributes;
+
 /**
  *
  * @author junyaoli
@@ -12,16 +15,47 @@ package Business.Pet;
 public class Pet {
 //    private String Weight;
     private int ID;
+    private String name ;
     private String Age;
     private String species;
     final static int count= 0 ;
+    private ExaminationResult examinationResult;
 
-    public Pet(String species, String Age ) {
-        
+    public Pet(String name,String species, String Age ) {
+        this.name=name;
         this.Age = Age;
         this.species = species;
- 
+        ID=getUUID();
+        examinationResult=new ExaminationResult();
     }
+     public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+        
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
+
+    public ExaminationResult getExaminationResult() {
+        return examinationResult;
+    }
+
+    public void setExaminationResult(ExaminationResult examinationResult) {
+        this.examinationResult = examinationResult;
+    }
+     
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+     
 
     public int getID() {
         return ID;
