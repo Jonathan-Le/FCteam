@@ -1,24 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business.Enterprise;
 
-import Business.Department.DepartmentDirectory;
+//import business.employee.EmployeeDirectory;
+//import business.organization.OrganizationDirectory;
+//import business.organization.Organization;
+//import business.useraccount.UserAccountDirectory;
 import Business.Employee.EmployeeDirectory;
-import Business.Pet.Pet;
-import Business.Pet.PetDirectory;
 import Business.UserAccount.UserAccountDirectory;
+import Business.Department.Department;
+import Business.Department.DepartmentDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  *
- * @author junyaoli
+ * @author lhm
  */
-public class Enterprise {
+public abstract class Enterprise {
 
     private String enterpriseName;
     private int enterpriseID;
@@ -26,13 +23,11 @@ public class Enterprise {
     private EmployeeDirectory employeeDirectory;
     private DepartmentDirectory DepartmentDirectory;
     private EnterpriseType enterpriseType;
-    private WorkQueue WorkQueue;
-    private PetDirectory petDirectory;
-
+    private WorkQueue adoptionQueue;
+    private static int counter = 0;
 
     public enum EnterpriseType {
-        RescuOrganization("RescuOrganization Enterprise"),
-        hospital("hospital Enterprise");
+        RescuOrganization("RescuOrganization Enterprise"), hospital("hospital Enterprise");
         private String value;
         private EnterpriseType(String value) {
             this.value = value;
@@ -41,44 +36,23 @@ public class Enterprise {
             return value;
         }
     }
-    
 
-    public Enterprise(String name) {
+    public Enterprise(String name, EnterpriseType type) {
         this.enterpriseName = name;
+        this.enterpriseType = type;
+        this.enterpriseID = ++counter;
         DepartmentDirectory = new DepartmentDirectory();
         userAccountDirectory = new UserAccountDirectory();
         employeeDirectory = new EmployeeDirectory();
-        this.WorkQueue = new WorkQueue();
-        petDirectory=new PetDirectory();
-        enterpriseID=getUUID();
+        this.adoptionQueue = new WorkQueue();
     }
 
-    public PetDirectory getPetDirectory() {
-        return petDirectory;
+    public WorkQueue getAdoptionQueue() {
+        return adoptionQueue;
     }
 
-    public void setPetDirectory(PetDirectory petDirectory) {
-        this.petDirectory = petDirectory;
-    }
-
- 
-    
-    public int getUUID(){
-        String id = null;
-        UUID uuid = UUID.randomUUID();
-        id=uuid.toString();
-        
-        id=id.replace("-", "");
-        int num= id.hashCode();
-        num=Math.abs(num);
-        return  num;      
-    }
-    public WorkQueue getWorkQueue() {
-        return WorkQueue;
-    }
-
-    public void setWorkQueue(WorkQueue WorkQueue) {
-        this.WorkQueue = WorkQueue;
+    public void setAdoptionQueue(WorkQueue adoptionQueue) {
+        this.adoptionQueue = adoptionQueue;
     }
 
     public String getEnterpriseName() {
@@ -129,13 +103,11 @@ public class Enterprise {
         this.enterpriseType = enterpriseType;
     }
     
-//    public abstract ArrayList<Department.DepartmentType> getSupportedOrganization();
+    public abstract ArrayList<Department.DepartmentType> getSupportedOrganization();
 
     @Override
     public String toString(){
         return this.enterpriseName + " (" + this.enterpriseType + ")";
     }
-
-
 
 }

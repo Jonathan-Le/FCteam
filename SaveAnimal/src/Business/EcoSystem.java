@@ -7,7 +7,6 @@ package Business;
 
 
 
-import Business.Customer.CustomerDirectory;
 import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.NetworkDirectory;
@@ -27,8 +26,6 @@ public class EcoSystem {
     private EmployeeDirectory employeeDirectory;
     private EnterpriseDirectory enterpriseDirectory;
     private PetDirectory petDirectory;
-    private CustomerDirectory customerDirectory;
-    
     
     private WorkQueue adoptionQueue;
     
@@ -40,7 +37,6 @@ public class EcoSystem {
         this.enterpriseDirectory= new EnterpriseDirectory();
         this.petDirectory = new PetDirectory();
         this.adoptionQueue = new WorkQueue();
-        customerDirectory=new CustomerDirectory();
         
     }
     
@@ -68,15 +64,6 @@ public class EcoSystem {
         return true;
       
     }
-
-    public CustomerDirectory getCustomerDirectory() {
-        return customerDirectory;
-    }
-
-    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
-        this.customerDirectory = customerDirectory;
-    }
-    
 
     public WorkQueue getAdoptionQueue() {
         return adoptionQueue;

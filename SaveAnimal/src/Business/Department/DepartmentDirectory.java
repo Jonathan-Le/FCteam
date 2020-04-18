@@ -23,34 +23,21 @@ public class DepartmentDirectory {
         return DepartmentDirectory;
     }
     
-    public Department findDepartment(String name){
-        
-        for (Department network1 : DepartmentDirectory) {
-            if (network1.getName().equals(name)) {
-                return network1;
-            }
-        }
-        return null;
-    }
-    
-   public Department createOrganization( String name ) {
+   public Department createOrganization(Department.DepartmentType type, int enterpriseID) {
         Department department = null;
-        department = new Department(name);
-        DepartmentDirectory.add(department);
-//            DepartmentDirectory.add(department);
-//        if (type.getValue().equals(Department.DepartmentType.OrganizationAdminOrg.getValue())) {
-//            department = new OrganizationAdminOrg(Department.DepartmentType.OrganizationAdminOrg, enterpriseID);
-//            DepartmentDirectory.add(department);
-//        } else if (type.getValue().equals(Department.DepartmentType.HospitalAdminOrg.getValue())) {
-//            department = new HospitalAdminOrg(Department.DepartmentType.HospitalAdminOrg, enterpriseID);
-//            DepartmentDirectory.add(department);
-//        } else if (type.getValue().equals(Department.DepartmentType.SystemOrg.getValue())) {
-//            department = new SystemOrg(Department.DepartmentType.SystemOrg, enterpriseID);
-//            DepartmentDirectory.add(department);
-//        } else if (type.getValue().equals(Department.DepartmentType.WorkerOrg.getValue())) {
-//            department = new WorkerOrg(Department.DepartmentType.WorkerOrg, enterpriseID);
-//            DepartmentDirectory.add(department);
-//        }
+        if (type.getValue().equals(Department.DepartmentType.OrganizationAdminOrg.getValue())) {
+            department = new OrganizationAdminOrg(Department.DepartmentType.OrganizationAdminOrg, enterpriseID);
+            DepartmentDirectory.add(department);
+        } else if (type.getValue().equals(Department.DepartmentType.HospitalAdminOrg.getValue())) {
+            department = new HospitalAdminOrg(Department.DepartmentType.HospitalAdminOrg, enterpriseID);
+            DepartmentDirectory.add(department);
+        } else if (type.getValue().equals(Department.DepartmentType.SystemOrg.getValue())) {
+            department = new SystemOrg(Department.DepartmentType.SystemOrg, enterpriseID);
+            DepartmentDirectory.add(department);
+        } else if (type.getValue().equals(Department.DepartmentType.WorkerOrg.getValue())) {
+            department = new WorkerOrg(Department.DepartmentType.WorkerOrg, enterpriseID);
+            DepartmentDirectory.add(department);
+        }
         
         return department;
     }

@@ -5,11 +5,8 @@
 package Business.Employee;
 
 import Business.Department.Department;
-import Business.Pet.Pet;
-import com.db4o.collections.ActivatableArrayList;
-import java.util.ArrayList;
+import Business.Department.Department.DepartmentType;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  *
@@ -19,6 +16,7 @@ public class Employee {
     
    
     private String name;
+    private DepartmentType depType;
     private int id;
     private int age;
     private String sex;
@@ -27,26 +25,26 @@ public class Employee {
     private Date leaveTime;
     private int level;
     private double salary;
-    private ArrayList<Pet> PetList;
-//    private static int count = 0;
+    private static int count = 0;
 
-    public Employee(String name ) {
-        this.name = name; 
+    public Employee(String name, DepartmentType dep ) {
+        this.name = name;
+        this.depType = dep;
+        if (depType == DepartmentType.HospitalAdminOrg) {
+            this.salary = 1000;
+        }
+        if (depType == DepartmentType.OrganizationAdminOrg) {
+            this.salary = 1200;
+        }
+        if (depType == DepartmentType.SystemOrg) {
+            this.salary = 1300;
+        }
+        if (depType == DepartmentType.WorkerOrg) {
+            this.salary = 1500;
+        }
+
         this.registerTime = new Date();
-        id = getUUID();
-    }
-     public int getUUID(){
-        String id = null;
-        UUID uuid = UUID.randomUUID();
-        id=uuid.toString();
-        
-        id=id.replace("-", "");
-        int num= id.hashCode();
-        num=Math.abs(num);
-        return  num;      
-    }
-    public ArrayList<Pet> getPetList() {
-        return PetList;
+        id = ++count;
     }
 
     public String getName() {
@@ -55,6 +53,14 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DepartmentType getDepType() {
+        return depType;
+    }
+
+    public void setDepType(DepartmentType depType) {
+        this.depType = depType;
     }
 
     public int getId() {
@@ -121,5 +127,12 @@ public class Employee {
         this.salary = salary;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Employee.count = count;
+    }
     
 }

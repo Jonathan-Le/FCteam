@@ -12,60 +12,22 @@ import java.util.ArrayList;
  */
 public class WorkQueue {
     
-    private ArrayList<AdoptionRequest> adoptionkRequestList;
-    private ArrayList<WorkRequest> treatmentRequestList;
-    private ArrayList<EuthunisiaRequest> EutRequestList;
+    private ArrayList<WorkRequest> workRequestList;
 
     public WorkQueue() {
-        adoptionkRequestList = new ArrayList();
-        treatmentRequestList= new ArrayList();
-        EutRequestList= new ArrayList();
+        workRequestList = new ArrayList();
     }
     
-    public WorkRequest findRequest(int ID) {
+    public WorkRequest findWorkRequest(int ID) {
            
-        for (WorkRequest request : adoptionkRequestList)
-            if (request.getID()==ID){
-                return request;       
-        }
-         for (WorkRequest request : treatmentRequestList)
-            if (request.getID()==ID){
-                return request;       
-        }
-          for (WorkRequest request : EutRequestList)
+        for (WorkRequest request : workRequestList)
             if (request.getID()==ID){
                 return request;       
         }
         return null;
     }
 
-    public ArrayList<EuthunisiaRequest> getEutRequestList() {
-        return EutRequestList;
-    }
-
-    public void setEutRequestList(ArrayList<EuthunisiaRequest> EutRequestList) {
-        this.EutRequestList = EutRequestList;
-    }
-    
-     public WorkRequest findTreatmentRequest(int ID) {
-           
-        for (WorkRequest request : treatmentRequestList)
-            if (request.getID()==ID){
-                return request;       
-        }
-        return null;
-    }
-
-    public ArrayList<WorkRequest> getTreatmentRequestList() {
-        return treatmentRequestList;
-    }
-
-    public void setTreatmentRequestList(ArrayList<WorkRequest> treatmentRequestList) {
-        this.treatmentRequestList = treatmentRequestList;
-    }
-    
-
-    public ArrayList<AdoptionRequest> getAdoptionkRequestList() {
-        return adoptionkRequestList;
+    public ArrayList<WorkRequest> getWorkRequestList() {
+        return workRequestList;
     }
 }
