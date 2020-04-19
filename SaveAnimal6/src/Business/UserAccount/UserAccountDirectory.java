@@ -1,0 +1,88 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Business.UserAccount;
+
+import Business.Employee.Employee;
+import Business.Role.Role;
+import java.util.ArrayList;
+import java.util.UUID;
+
+/**
+ *
+ * @author raunak
+ */
+public class UserAccountDirectory {
+    
+    private ArrayList<UserAccount> userAccountList;
+
+    public UserAccountDirectory() {
+        userAccountList = new ArrayList();
+    }
+
+    public ArrayList<UserAccount> getUserAccountList() {
+        return userAccountList;
+    }
+    
+    public UserAccount authenticateUser(String username, String password){
+        for (UserAccount ua : userAccountList)
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
+                return ua;
+            }
+        return null;
+    }
+    public UserAccount findUser(String username){
+        for (UserAccount ua : userAccountList)
+            if (ua.getUsername().equals(username)){
+                return ua;
+            }
+        return null;
+    }
+    public UserAccount findUserbyID(int ID){
+        for (UserAccount ua : userAccountList)
+            if (ua.getId()==(ID)){
+                return ua;
+            }
+        return null;
+    }
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setEmployee(employee);
+        userAccount.setRole(role);
+        userAccountList.add(userAccount);
+        return userAccount;
+    }
+    
+    public UserAccount createCusUserAccount(String username, String password, Role role){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setRole(role);
+        userAccount.setId(getUUID());
+        userAccountList.add(userAccount);
+        return userAccount;
+    }
+    
+    
+    public boolean checkIfUsernameIsUnique(String username){
+        for (UserAccount ua : userAccountList){
+            if (ua.getUsername().equals(username))
+                return false;
+        }
+        return true;
+    }
+    
+      public int getUUID(){
+        String id = null;
+        UUID uuid = UUID.randomUUID();
+        id=uuid.toString();
+     
+        id=id.replace("-", "");
+        int num= id.hashCode();
+        num=Math.abs(num);
+        return  num;      
+    }
+}
