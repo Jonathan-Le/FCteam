@@ -6,6 +6,8 @@
 package userinterface.OrganizationRole;
 
 
+import userinterface.OrganizationRole.PetHealth.ApplyEuthanasiaJPanel;
+import userinterface.OrganizationRole.PetHealth.ApplyExaminationJPanel;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;

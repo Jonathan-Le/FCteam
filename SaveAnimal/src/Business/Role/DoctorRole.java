@@ -8,7 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.HospitalRole.DoctorJPanel;
+import userinterface.HospitalRole.ExamDoctor.DoctorJPanel;
 
 /**
  *

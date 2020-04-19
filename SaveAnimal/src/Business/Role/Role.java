@@ -23,7 +23,8 @@ public abstract class Role {
         HospitalAdmin("HospitalAdmin"),
         OrganizationAdmin("OrganizationAdmin"),
         Customer("Customer"),
-        Doctor("Doctor"),
+        Doctor("Doctor"),      
+        VolunteerMgn("VolunteerMgn"),
         Worker("Worker"),
         SysAdmin("Sysadmin");
         

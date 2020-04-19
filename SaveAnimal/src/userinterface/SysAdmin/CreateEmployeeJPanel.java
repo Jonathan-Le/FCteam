@@ -15,7 +15,9 @@ import Business.Role.DoctorRole;
 import Business.Role.HospitalAdminRole;
 import Business.Role.OrganizationAdminRole;
 import Business.Role.Role;
+import static Business.Role.Role.RoleType.VolunteerMgn;
 import Business.Role.SystemAdminRole;
+import Business.Role.VolunteerMgn;
 import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
 import static com.sun.xml.internal.ws.util.JAXWSUtils.getUUID;
@@ -62,6 +64,8 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
             rolejComboBox.addItem(Role.RoleType.HospitalAdmin.getValue());
             rolejComboBox.addItem(Role.RoleType.OrganizationAdmin.getValue());
             rolejComboBox.addItem(Role.RoleType.Worker.getValue());
+            
+            rolejComboBox.addItem(Role.RoleType.VolunteerMgn.getValue());    
             rolejComboBox.addItem(Role.RoleType.SysAdmin.getValue());        
     }
 
@@ -200,6 +204,10 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         }if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin"));
             account.setId(id);
+        }if (roleType.equals(Role.RoleType.VolunteerMgn.getValue())) {
+            UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new VolunteerMgn("VolunteerMgn",ent.getEnterpriseID()));
+            account.setId(id);
+            
         }
 
     }//GEN-LAST:event_confirmjButtonActionPerformed
