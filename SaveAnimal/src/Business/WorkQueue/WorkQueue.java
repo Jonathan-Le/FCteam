@@ -14,20 +14,16 @@ public class WorkQueue {
     
     private ArrayList<AdoptionRequest> adoptionkRequestList;
     private ArrayList<ExaminationRequest> examinationRequestList;
-    private ArrayList<EuthanasiaRequest> EutRequestList;
+    private ArrayList<EuthanasiaRequest> EutRequestList;    
+    private ArrayList<ApplicationOfVolunteer> applicationOfVolunteersList;
 
     public WorkQueue() {
         
-        if (EutRequestList==null) {
-            EutRequestList= new ArrayList();
-        }
-        if (adoptionkRequestList==null) {
-            adoptionkRequestList= new ArrayList();
-        }
-        if (examinationRequestList==null) {
-            examinationRequestList= new ArrayList();
-        }
-
+            EutRequestList= new ArrayList();      
+            adoptionkRequestList= new ArrayList();      
+            examinationRequestList= new ArrayList();      
+            applicationOfVolunteersList= new ArrayList();
+ 
     }
     
     public WorkRequest findRequestbyname(String title) {
@@ -41,6 +37,10 @@ public class WorkQueue {
                 return request;       
         }
           for (WorkRequest request : EutRequestList)
+            if (request.getTitle()==title){
+                return request;       
+        }
+          for (WorkRequest request : applicationOfVolunteersList)
             if (request.getTitle()==title){
                 return request;       
         }
@@ -60,7 +60,19 @@ public class WorkQueue {
             if (request.getID()==ID){
                 return request;       
         }
+          for (WorkRequest request : applicationOfVolunteersList)
+            if (request.getID()==ID){
+                return request;       
+        }
         return null;
+    }
+
+    public ArrayList<ApplicationOfVolunteer> getApplicationOfVolunteersList() {
+        return applicationOfVolunteersList;
+    }
+
+    public void setApplicationOfVolunteersList(ArrayList<ApplicationOfVolunteer> applicationOfVolunteersList) {
+        this.applicationOfVolunteersList = applicationOfVolunteersList;
     }
 
     public ArrayList<EuthanasiaRequest> getEutRequestList() {

@@ -17,6 +17,7 @@ import Business.Role.HospitalAdminRole;
 import Business.Role.OrganizationAdminRole;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.Role.VolunteerMgn;
 import Business.Role.WorkerRole;
 import Business.UserAccount.UserAccount;
 import com.db4o.cs.internal.messages.Message;
@@ -53,7 +54,8 @@ public class CreateAccountJPane extends javax.swing.JPanel {
             rolejComboBox.addItem(Role.RoleType.Doctor.getValue());
             rolejComboBox.addItem(Role.RoleType.HospitalAdmin.getValue());
             rolejComboBox.addItem(Role.RoleType.OrganizationAdmin.getValue());
-            rolejComboBox.addItem(Role.RoleType.Worker.getValue());
+            rolejComboBox.addItem(Role.RoleType.Worker.getValue());          
+            rolejComboBox.addItem(Role.RoleType.VolunteerMgn.getValue());  
             rolejComboBox.addItem(Role.RoleType.SysAdmin.getValue());        
     }
   private void initenterprisebox(Network network) {
@@ -247,7 +249,10 @@ public class CreateAccountJPane extends javax.swing.JPanel {
           }else if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
              UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin" )); 
              account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
-          }   
+          }else if (roleType.equals(Role.RoleType.VolunteerMgn.getValue())) {
+             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new VolunteerMgn("VolunteerMgn" ,ent.getEnterpriseID())); 
+             account.setId(id);JOptionPane.showMessageDialog(null, "Create successfully");
+          }    
             }              
         }else{           
             UserAccount account= system.getUserAccountDirectory().createCusUserAccount(Username, password, new CustomerRole("Customer")); 

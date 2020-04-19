@@ -29,8 +29,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         
-        system=ConfigureASystem.configure();
-        dB4OUtil.storeSystem(system);
+//        system=ConfigureASystem.configure();
+//        dB4OUtil.storeSystem(system);
         
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
@@ -132,8 +132,7 @@ public class MainJFrame extends javax.swing.JFrame {
        char[] passwordCharArray = passwordField.getPassword();
        String password = String.valueOf(passwordCharArray);
        
-       UserAccount useraccount = system.getUserAccountDirectory().authenticateUser(username, password);
-       
+       UserAccount useraccount = system.getUserAccountDirectory().authenticateUser(username, password); 
      
        if (useraccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid User", "LOGIN", JOptionPane.ERROR_MESSAGE);
