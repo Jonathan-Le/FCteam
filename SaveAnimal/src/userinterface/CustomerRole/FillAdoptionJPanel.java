@@ -11,6 +11,7 @@ import Business.Pet.Pet;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionRequest;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -125,13 +126,13 @@ public class FillAdoptionJPanel extends javax.swing.JPanel {
         String description = descriptionjTextField.getText();
         String title = titlejTextField.getText();
         
-        AdoptionRequest request = new AdoptionRequest(title,description,budget,pet);
+        AdoptionRequest request = new AdoptionRequest(title,"AdoptionRequest",description,budget,pet);
         request.setReceiver(org.getEnterpriseName());
         request.setSender(account.getUsername());
         request.setStatus("Pending");
         
-        entworkqeueue.getAdoptionkRequestList().add(request);
-        userWorkQueue.getAdoptionkRequestList().add(request);
+        entworkqeueue.getWorkRequestList().add(request);
+        userWorkQueue.getWorkRequestList().add(request);
         JOptionPane.showMessageDialog(null,"Send successfully");
     }//GEN-LAST:event_ApplyjButtonActionPerformed
 

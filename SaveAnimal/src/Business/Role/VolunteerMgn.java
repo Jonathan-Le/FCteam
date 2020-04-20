@@ -9,7 +9,7 @@ import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.OrganizationRole.OrganizationWorkerJPanel;
-import userinterface.OrganizationRole.VolunteerTrainer.ProcessVolunteerJPanel;
+import userinterface.OrganizationRole.ProcessVolunteerJPanel;
 
 /**
  *

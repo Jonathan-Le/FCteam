@@ -121,7 +121,7 @@ public class FillVolunteerJPanel extends javax.swing.JPanel {
         String introduction = introductionjTextField.getText();
         
        
-        ApplicationOfVolunteer request = new ApplicationOfVolunteer(Title);
+        ApplicationOfVolunteer request = new ApplicationOfVolunteer(Title,"ApplicationOfVolunteer");
         request.setReceiver(org.getEnterpriseName());
         request.setSender(account.getUsername());
         request.setStatus("Pending");
@@ -131,8 +131,8 @@ public class FillVolunteerJPanel extends javax.swing.JPanel {
         request.setName(name);
         request.setAge(age);
         
-        account.getWorkQueue().getApplicationOfVolunteersList().add(request);
-        org.getWorkQueue().getApplicationOfVolunteersList().add(request);
+        account.getWorkQueue().getWorkRequestList().add(request);
+        org.getWorkQueue().getWorkRequestList().add(request);
         
         JOptionPane.showMessageDialog(null,"Send successfully");
     }//GEN-LAST:event_jButton1ActionPerformed

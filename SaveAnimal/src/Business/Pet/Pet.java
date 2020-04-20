@@ -5,6 +5,7 @@
  */
 package Business.Pet;
 
+import Business.WorkQueue.VaccineRequest;
 import java.util.UUID;
 import java.util.jar.Attributes;
 
@@ -20,6 +21,7 @@ public class Pet {
     private String species;
     final static int count= 0 ;
     private ExaminationResult examinationResult;
+    private VaccineResult vaccineResult;
 
     public Pet(String name,String species, String Age ) {
         this.name=name;
@@ -27,6 +29,7 @@ public class Pet {
         this.species = species;
         ID=getUUID();
         examinationResult=new ExaminationResult();
+        vaccineResult=new VaccineResult();
     }
      public int getUUID(){
         String id = null;
@@ -38,6 +41,16 @@ public class Pet {
         num=Math.abs(num);
         return  num;      
     }
+
+    public VaccineResult getVaccineResult() {
+        return vaccineResult;
+    }
+
+    public void setVaccineResult(VaccineResult vaccineResult) {
+        this.vaccineResult = vaccineResult;
+    }
+
+   
 
     public ExaminationResult getExaminationResult() {
         return examinationResult;
