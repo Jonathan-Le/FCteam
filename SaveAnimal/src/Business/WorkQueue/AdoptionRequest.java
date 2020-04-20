@@ -17,8 +17,8 @@ public class AdoptionRequest extends WorkRequest {
     private Pet pet;
 
     
-    public AdoptionRequest(String title,String selfeDes, int budget,Pet pet) {
-        super(title);
+    public AdoptionRequest(String title,String requestType,String selfeDes, int budget,Pet pet) {
+        super(title,requestType);
         this.selfeDes = selfeDes;
         this.budget = budget;
         this.pet=pet;

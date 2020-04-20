@@ -27,9 +27,17 @@ public class PetDirectory {
         this.petlist = petlist;
     }
     
-    public Pet findPet(String ID) {
+    public Pet findPetbyName(String name) {
        for (Pet pet : petlist) {
-            if (pet.getName()==ID) {
+            if (pet.getName()==name) {
+                return pet;
+            }
+        }
+        return null;
+    }
+    public Pet findPetbyID(int ID) {
+       for (Pet pet : petlist) {
+            if (pet.getID()==ID) {
                 return pet;
             }
         }

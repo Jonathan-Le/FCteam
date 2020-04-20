@@ -21,8 +21,8 @@ public class ExaminationRequest extends WorkRequest {
     private String BodyTemperature="";
     private String MentalHealth="";
 
-    public ExaminationRequest(String title,Pet pet) {
-        super(title);
+    public ExaminationRequest(String title,String requestType, Pet pet) {
+        super(title,requestType);
         this.pet=pet;
     }
 

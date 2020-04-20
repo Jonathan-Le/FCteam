@@ -9,7 +9,7 @@ import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.Hospital.HospitalAdminJPanel;
-import userinterface.HospitalRole.ExamDoctor.DoctorJPanel;
+import userinterface.HospitalRole.DoctorJPanel;
 
 /**
  *

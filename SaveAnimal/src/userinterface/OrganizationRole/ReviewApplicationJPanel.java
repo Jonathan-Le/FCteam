@@ -61,9 +61,15 @@ public class ReviewApplicationJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         resultjTextField = new javax.swing.JTextField();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel4.setText("Annual Budget");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 144, -1, -1));
+        add(budgetjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 139, 119, -1));
 
         jLabel5.setText("Personal Description");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 188, -1, -1));
+        add(descriptionjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 183, 119, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,9 +77,11 @@ public class ReviewApplicationJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 21, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Please fill in your information !");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 74, -1, -1));
 
         ConfirmjButton.setText("Confirm");
         ConfirmjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,59 +89,11 @@ public class ReviewApplicationJPanel extends javax.swing.JPanel {
                 ConfirmjButtonActionPerformed(evt);
             }
         });
+        add(ConfirmjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 277, -1, -1));
 
         jLabel6.setText("Result");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(budgetjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ConfirmjButton)
-                            .addComponent(resultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(102, 102, 102))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(backJButton)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(budgetjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(descriptionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(resultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(ConfirmjButton)
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 232, -1, -1));
+        add(resultjTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 227, 119, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

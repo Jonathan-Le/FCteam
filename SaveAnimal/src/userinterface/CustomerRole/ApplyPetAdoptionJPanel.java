@@ -88,11 +88,10 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
         petjTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         choosejButton = new javax.swing.JButton();
-        ViewjButton = new javax.swing.JButton();
+        ViewjButtonVac = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         RefreshOrgjButton = new javax.swing.JButton();
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ViewjButtonExa = new javax.swing.JButton();
 
         orgjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,11 +106,8 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orgjTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 289, 106));
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel1.setText("Rescue Organiztion List");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 243, -1));
 
         sendjButton.setText("Send Application");
         sendjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +115,6 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
                 sendjButtonActionPerformed(evt);
             }
         });
-        add(sendjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
 
         petjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,11 +137,8 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(petjTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 285, 106));
-
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel2.setText("Pet List");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
         choosejButton.setText("Choose");
         choosejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -154,15 +146,13 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
                 choosejButtonActionPerformed(evt);
             }
         });
-        add(choosejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
 
-        ViewjButton.setText("View Pet");
-        ViewjButton.addActionListener(new java.awt.event.ActionListener() {
+        ViewjButtonVac.setText("View Pet Vaccine");
+        ViewjButtonVac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewjButtonActionPerformed(evt);
+                ViewjButtonVacActionPerformed(evt);
             }
         });
-        add(ViewjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, -1, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +160,6 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 22, -1, -1));
 
         RefreshOrgjButton.setText("Refresh");
         RefreshOrgjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +167,79 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
                 RefreshOrgjButtonActionPerformed(evt);
             }
         });
-        add(RefreshOrgjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 23, -1, -1));
+
+        ViewjButtonExa.setText("View Pet Examination");
+        ViewjButtonExa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewjButtonExaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(backJButton)
+                        .addGap(469, 469, 469)
+                        .addComponent(RefreshOrgjButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(250, 250, 250)
+                                .addComponent(choosejButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sendjButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ViewjButtonVac)
+                                .addComponent(ViewjButtonExa)))))
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backJButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(RefreshOrgjButton)))
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(choosejButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sendjButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ViewjButtonExa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ViewjButtonVac)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendjButtonActionPerformed
@@ -189,7 +250,7 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
             return;
         }else{
             String ID = petjTable.getValueAt(row, 1).toString();
-            Pet pet =(Pet)org.getPetDirectory().findPet(ID);
+            Pet pet =(Pet)org.getPetDirectory().findPetbyName(ID);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add(new FillAdoptionJPanel(userProcessContainer, account, business,pet,org));
             layout.next(userProcessContainer);
@@ -211,7 +272,7 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_choosejButtonActionPerformed
 
-    private void ViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewjButtonActionPerformed
+    private void ViewjButtonVacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewjButtonVacActionPerformed
         // TODO add your handling code here:
         int row = petjTable.getSelectedRow();
         if (row<0) {
@@ -219,13 +280,13 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
             return;
         }else {
             String name = petjTable.getValueAt(row,1).toString();
-            Pet pet = org.getPetDirectory().findPet(name);
+            Pet pet = org.getPetDirectory().findPetbyName(name);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            userProcessContainer.add(new ViewPetJPanel(userProcessContainer,pet));
+            userProcessContainer.add(new ViewPetVacJPanel(userProcessContainer,pet));
             layout.next(userProcessContainer);
         }
 
-    }//GEN-LAST:event_ViewjButtonActionPerformed
+    }//GEN-LAST:event_ViewjButtonVacActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
@@ -242,10 +303,26 @@ public class ApplyPetAdoptionJPanel extends javax.swing.JPanel {
         populateOrgTable();
     }//GEN-LAST:event_RefreshOrgjButtonActionPerformed
 
+    private void ViewjButtonExaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewjButtonExaActionPerformed
+        // TODO add your handling code here:
+        int row = petjTable.getSelectedRow();
+        if (row<0) {
+            JOptionPane.showMessageDialog(null,"Selev a row");
+            return;
+        }else {
+            String name = petjTable.getValueAt(row,1).toString();
+            Pet pet = org.getPetDirectory().findPetbyName(name);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add(new ViewPetExaJPanel(userProcessContainer,pet));
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_ViewjButtonExaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RefreshOrgjButton;
-    private javax.swing.JButton ViewjButton;
+    private javax.swing.JButton ViewjButtonExa;
+    private javax.swing.JButton ViewjButtonVac;
     private javax.swing.JButton backJButton;
     private javax.swing.JButton choosejButton;
     private javax.swing.JLabel jLabel1;

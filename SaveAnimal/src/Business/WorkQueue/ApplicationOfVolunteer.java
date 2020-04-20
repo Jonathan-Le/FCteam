@@ -15,8 +15,8 @@ public class ApplicationOfVolunteer extends WorkRequest{
     int Age ;
     String Gender ; 
     String Introduction ;
-    public ApplicationOfVolunteer(String title) {
-        super(title);
+    public ApplicationOfVolunteer(String title,String requestType) {
+        super(title,requestType);
     }
 
     public String getName() {

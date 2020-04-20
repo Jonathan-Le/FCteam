@@ -46,7 +46,7 @@ public class AdoptionProcess extends javax.swing.JPanel {
 
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);  
-            ArrayList<AdoptionRequest> worklist = userEnterprise.getWorkQueue().getAdoptionkRequestList();          
+            ArrayList<WorkRequest> worklist = userEnterprise.getWorkQueue().getWorkRequestList();          
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[8];

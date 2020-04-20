@@ -16,8 +16,8 @@ public class EuthanasiaRequest extends WorkRequest {
     String Reason;
     Pet pet;
 
-    public EuthanasiaRequest(String title,String Reason, Pet pet) {
-        super(title);
+    public EuthanasiaRequest(String title,String requestType,String Reason, Pet pet) {
+        super(title,requestType);
         this.Reason = Reason;
         this.pet = pet;
     }

@@ -6,13 +6,15 @@
 package userinterface.OrganizationRole;
 
 
-import userinterface.OrganizationRole.PetHealth.ApplyEuthanasiaJPanel;
-import userinterface.OrganizationRole.PetHealth.ApplyExaminationJPanel;
+import userinterface.OrganizationRole.Pet.ApplyEuthanasiaJPanel;
+import userinterface.OrganizationRole.Pet.ApplyExaminationJPanel;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.OrganizationRole.Pet.InteractionwithHospitalJPanel;
+import userinterface.OrganizationRole.PetManage.ManagePetJPanel;
 
 /**
  *
@@ -50,9 +52,9 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         petAdoptionjButton = new javax.swing.JButton();
-        EuthanasiajButton = new javax.swing.JButton();
         ExaminationjButton = new javax.swing.JButton();
         ExaminationjButton1 = new javax.swing.JButton();
+        MgnPetjButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 25)); // NOI18N
         jLabel1.setText("Animal Rescue");
@@ -65,16 +67,8 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
             }
         });
 
-        EuthanasiajButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        EuthanasiajButton.setText("Apply Euthanasia");
-        EuthanasiajButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EuthanasiajButtonActionPerformed(evt);
-            }
-        });
-
         ExaminationjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        ExaminationjButton.setText("Apply Medical Examination");
+        ExaminationjButton.setText("Apply Medical Application");
         ExaminationjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExaminationjButtonActionPerformed(evt);
@@ -89,6 +83,14 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
             }
         });
 
+        MgnPetjButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        MgnPetjButton.setText("Manage Pets");
+        MgnPetjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MgnPetjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,14 +100,14 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EuthanasiajButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(petAdoptionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ExaminationjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExaminationjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(ExaminationjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MgnPetjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(203, 203, 203)
                         .addComponent(jLabel1)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,12 +117,11 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(petAdoptionjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(EuthanasiajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ExaminationjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ExaminationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ExaminationjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(MgnPetjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,29 +132,32 @@ public class OrganizationWorkerJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);    
     }//GEN-LAST:event_petAdoptionjButtonActionPerformed
 
-    private void EuthanasiajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EuthanasiajButtonActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new ApplyEuthanasiaJPanel(userProcessContainer,business,account,userEnterprise));
-        layout.next(userProcessContainer);    
-    }//GEN-LAST:event_EuthanasiajButtonActionPerformed
-
     private void ExaminationjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExaminationjButtonActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add(new ApplyExaminationJPanel(userProcessContainer,business,account,userEnterprise));
+        userProcessContainer.add(new InteractionwithHospitalJPanel(userProcessContainer,business,account));
         layout.next(userProcessContainer);    
     }//GEN-LAST:event_ExaminationjButtonActionPerformed
 
     private void ExaminationjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExaminationjButton1ActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new ProcessVolunteerJPanel(userProcessContainer,account,business));
+        layout.next(userProcessContainer);    
     }//GEN-LAST:event_ExaminationjButton1ActionPerformed
+
+    private void MgnPetjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MgnPetjButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add(new ManagePetJPanel(userProcessContainer,account,business));
+        layout.next(userProcessContainer);    
+    }//GEN-LAST:event_MgnPetjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton EuthanasiajButton;
     private javax.swing.JButton ExaminationjButton;
     private javax.swing.JButton ExaminationjButton1;
+    private javax.swing.JButton MgnPetjButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton petAdoptionjButton;

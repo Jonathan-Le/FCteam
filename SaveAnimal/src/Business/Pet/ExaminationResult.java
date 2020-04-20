@@ -24,8 +24,15 @@ public class ExaminationResult {
     private String MentalHealth="";
 
     public ExaminationResult() {
-   
         Testdate=new Date();
+    }
+
+    public Date getTestdate() {
+        return Testdate;
+    }
+
+    public void setTestdate(Date Testdate) {
+        this.Testdate = Testdate;
     }
 
     

@@ -22,12 +22,36 @@ public abstract class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private int ID;
+    private String requestType ; 
    
     
-    public WorkRequest(String title){
+    public WorkRequest(String title,String requestType){
         requestDate = new Date();
         ID=getUUID();
         this.title=title;
+        this.requestType=requestType;
+    }
+    public enum RequestType{
+        
+        AdoptionRequest("AdoptionRequest"),
+        ApplicationOfVolunteer("ApplicationOfVolunteer"),
+        ExaminationRequest("ExaminationRequest"),
+        VaccineRequest("VaccineRequest"),
+        EuthanasiaRequest("EuthanasiaRequest");
+        
+        private String value;
+        private RequestType(String value){
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
     }
     
     
@@ -47,6 +71,14 @@ public abstract class WorkRequest {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
     }
     
     

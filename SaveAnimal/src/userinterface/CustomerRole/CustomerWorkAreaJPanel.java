@@ -52,10 +52,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) applicationjTable.getModel();
             dtm.setRowCount(0);                 
             
-            ArrayList<AdoptionRequest> worklist1 = account.getWorkQueue().getAdoptionkRequestList();        
-            ArrayList<ApplicationOfVolunteer> worklist2 = account.getWorkQueue().getApplicationOfVolunteersList();
-            ArrayList<WorkRequest>worklist = new ArrayList<>(worklist1);
-            worklist.addAll(worklist2);
+            ArrayList<WorkRequest> worklist = account.getWorkQueue().getWorkRequestList();   
             if (worklist != null){               
                 for(WorkRequest apl : worklist){
                     Object[] row = new Object[8];
@@ -218,7 +215,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         }else{
             int requestID= Integer.valueOf(applicationjTable.getValueAt(row,0).toString());
             WorkRequest request =(WorkRequest) account.getWorkQueue().findRequestbyID(requestID);
-            account.getWorkQueue().getExaminationRequestList().remove(request);
+            account.getWorkQueue().getWorkRequestList().remove(request);
             populateApplicationTable();
         }
     }//GEN-LAST:event_deletejButtonActionPerformed
