@@ -44,11 +44,15 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         this.system=system;
         this.account=account;     
         
-        if (!(account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") )) {
-        employeenamejTextField.setText(account.getEmployee().getName());
-        AgejTextField.setText(String.valueOf(account.getEmployee().getAge()));
-        genderjTextField.setText(account.getEmployee().getSex());
-        }       
+        if ((account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") )) {
+            employeenamejTextField.setEditable(false);
+            AgejTextField.setEditable(false);
+            genderjTextField.setEditable(false);
+        } else{
+             employeenamejTextField.setText(account.getEmployee().getName());
+            AgejTextField.setText(String.valueOf(account.getEmployee().getAge()));
+            genderjTextField.setText(account.getEmployee().getSex());
+        }      
         passwordjTextField.setText(account.getPassword());
         UsernamejTextField1.setText(account.getUsername());      
        
@@ -142,10 +146,10 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         String password=passwordjTextField.getText();
        
         
-        if (!(account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") )) {
+        if (!((account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") ))) {
         
         String Employeename=employeenamejTextField.getText();
-        int age=Integer.parseInt(AgejTextField.getText());
+        String age=(AgejTextField.getText());
         String gender=genderjTextField.getText() ;
          Employee newemployee = account.getEmployee();
         newemployee.setAge(age);

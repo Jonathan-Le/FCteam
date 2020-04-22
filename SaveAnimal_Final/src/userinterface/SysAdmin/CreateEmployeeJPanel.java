@@ -167,7 +167,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         String Username=usernamejTextField.getText();
         String password=passwordjTextField.getText();
         String Employeename=EmlpoyeeNamejTextField.getText();
-        int age=Integer.parseInt(AgejTextField.getText());
+        String age=(AgejTextField.getText());
         String gender=genderjTextField.getText() ;
         int id =getUUID();
 
@@ -184,24 +184,29 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         newEmployee.setId(id);
 
         if (roleType.equals(Role.RoleType.Customer.getValue())) {
-            JOptionPane.showMessageDialog(null, "Create successfully");
             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new CustomerRole("Customer"));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }if (roleType.equals(Role.RoleType.Doctor.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new DoctorRole("Doctor",ent.getEnterpriseID() ));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }if (roleType.equals(Role.RoleType.HospitalAdmin.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new HospitalAdminRole("HospitalAdmin",ent.getEnterpriseID() ));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }if (roleType.equals(Role.RoleType.OrganizationAdmin.getValue())) {
             UserAccount account=  system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new OrganizationAdminRole("OrganizationAdmin",ent.getEnterpriseID() ));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }if (roleType.equals(Role.RoleType.Worker.getValue())) {
             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new WorkerRole("Worker",ent.getEnterpriseID() ));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }if (roleType.equals(Role.RoleType.SysAdmin.getValue())) {
             UserAccount account= system.getUserAccountDirectory().createUserAccount(Username, password, newEmployee, new SystemAdminRole("SysAdmin"));
             account.setId(id);
+            JOptionPane.showMessageDialog(null, "Create successfully");
         }
 
     }//GEN-LAST:event_confirmjButtonActionPerformed

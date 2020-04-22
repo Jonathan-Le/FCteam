@@ -18,10 +18,10 @@ import java.util.UUID;
 public class Employee {
     
    
-    private String name;
+    private String name="";
     private int id;
-    private int age;
-    private String sex;
+    private String age="";
+    private String sex="";
     private String location;
     private Date registerTime;
     private Date leaveTime;
@@ -65,11 +65,11 @@ public class Employee {
         this.id = id;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

@@ -212,15 +212,15 @@ public class CreateAccountJPane extends javax.swing.JPanel {
            String roleType= rolejComboBox.getSelectedItem().toString();
            String Username=usernamejTextField.getText();
            String password=passwordjTextField.getText();
-           String Employeename=null;
-           int age=0;
-           String gender=null;
+           String Employeename="";
+           String age="";
+           String gender="";
            int id =getUUID();
         
         if (!roleType.equals(Role.RoleType.Customer.getValue())) {
             if (CheckEmpIformationBlackText()) {
              Employeename=EmlpoyeeNamejTextField.getText();
-             age=Integer.parseInt(AgejTextField.getText());
+             age=(AgejTextField.getText());
              gender=genderjTextField.getText() ;
              system.getCustomerDirectory().addRestaurant(Username);
              String department=departmentjComboBox.getSelectedItem().toString();       

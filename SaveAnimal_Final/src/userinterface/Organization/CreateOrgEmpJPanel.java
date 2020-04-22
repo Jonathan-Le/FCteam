@@ -163,7 +163,7 @@ public class CreateOrgEmpJPanel extends javax.swing.JPanel {
         String Username=usernamejTextField.getText();
         String password=passwordjTextField.getText();
         String Employeename=EmlpoyeeNamejTextField.getText();
-        int age=Integer.parseInt(AgejTextField.getText());
+        String age=(AgejTextField.getText());
         String gender=genderjTextField.getText() ;
         int id =getUUID();
         String roleType= rolejComboBox.getSelectedItem().toString();

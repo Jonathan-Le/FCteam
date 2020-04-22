@@ -142,7 +142,7 @@ public class ViewOrgEmpJPanel extends javax.swing.JPanel {
         String Username=UsernamejTextField1.getText();
         String password=passwordjTextField.getText();
         String Employeename=employeenamejTextField.getText();
-        int age=Integer.parseInt(AgejTextField.getText());
+        String age=(AgejTextField.getText());
         String gender=genderjTextField.getText() ;
         
         if (!(account.getEmployee()==null)) {
