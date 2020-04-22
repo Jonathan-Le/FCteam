@@ -44,8 +44,8 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         this.system=system;
         this.account=account;     
         
-        if (!(account.getEmployee()==null)) {
-            employeenamejTextField.setText(account.getEmployee().getName());
+        if (!(account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") )) {
+        employeenamejTextField.setText(account.getEmployee().getName());
         AgejTextField.setText(String.valueOf(account.getEmployee().getAge()));
         genderjTextField.setText(account.getEmployee().getSex());
         }       
@@ -140,21 +140,25 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String Username=UsernamejTextField1.getText();
         String password=passwordjTextField.getText();
+       
+        
+        if (!(account.getRole().getRoleType().equals("CustomerRole")|| account.getRole().getRoleType().equals("SystemAdminRole") )) {
+        
         String Employeename=employeenamejTextField.getText();
         int age=Integer.parseInt(AgejTextField.getText());
         String gender=genderjTextField.getText() ;
-        
-       
-        Employee newemployee = account.getEmployee();
+         Employee newemployee = account.getEmployee();
         newemployee.setAge(age);
-//        newemployee.setDepType(Department.DepartmentType.valueOf(departmentType));
         newemployee.setName(Employeename);
         newemployee.setSex(gender);
         account.setPassword(password);
         account.setUsername(Username);
-        
-//         Employee newEmployee=system.getEmployeeDirectory().createEmployee(Employeename, Department.DepartmentType.SystemOrg);
-   
+        }     
+ 
+        Employee newemployee = account.getEmployee();    
+        account.setPassword(password);
+        account.setUsername(Username);
+ 
            JOptionPane.showMessageDialog(null, "edit successfully");
     }//GEN-LAST:event_editjButtonActionPerformed
 
